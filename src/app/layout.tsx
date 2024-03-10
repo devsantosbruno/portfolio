@@ -1,3 +1,4 @@
+import { SmoothScroll } from '@/components/ui/smooth-scroll';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -17,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <main className='min-h-screen w-screen bg-black'>{children}</main>
+        <SmoothScroll>
+          <main className='min-h-screen w-screen bg-black'>{children}</main>
+        </SmoothScroll>
       </body>
     </html>
   );
