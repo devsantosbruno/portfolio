@@ -14,10 +14,11 @@ export default function Model() {
   return (
     <group scale={viewport.width / 3.75}>
       <Text
-        // font={'/fonts/PPNeueMontreal-Bold.otf'}
         position={[0, 0, -1]}
-        fontSize={0.5}
-        color='white'
+        fontSize={0.75}
+        color='#a3e635'
+        fontWeight={900}
+        letterSpacing={-0.05}
         anchorX='center'
         anchorY='middle'
       >
