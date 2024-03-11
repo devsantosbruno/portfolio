@@ -1,4 +1,5 @@
 import { Contact } from '@/components/Contact';
+import { Projects } from '@/components/Projects';
 import { MaskContainer } from '@/components/ui/svg-mask-effect';
 import dynamic from 'next/dynamic';
 
@@ -34,7 +35,23 @@ export default function Home() {
       </section>
 
       <section className='py-20'>
-        <Contact />
+        <div className='container'>
+          <h2 className='text-8xl text-lime-400 mb-24 font-black tracking-tighter'>
+            Contato
+          </h2>
+
+          <Contact />
+        </div>
+      </section>
+
+      <section className='bg-white pt-20'>
+        <div className='container'>
+          <h2 className='text-8xl text-black mb-24 font-black tracking-tighter'>
+            PROJECTS
+          </h2>
+        </div>
+
+        <Projects />
       </section>
     </>
   );
