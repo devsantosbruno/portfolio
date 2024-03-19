@@ -110,14 +110,14 @@ export function Modal({ modal, projects }: ModalProps) {
 
       <motion.div
         ref={cursor}
-        className='w-[80px] h-[80px] rounded-full bg-lime-400 opacity-60 absolute z-10 flex items-center justify-center text-sm font-light pointer-events-none'
+        className='w-[80px] h-[80px] rounded-full bg-lime-400 opacity-60 absolute z-30 flex items-center justify-center text-sm font-light pointer-events-none'
         variants={scaleAnimation}
         initial='initial'
         animate={active ? 'enter' : 'closed'}
       />
       <motion.div
         ref={cursorLabel}
-        className='w-[80px] h-[80px] rounded-full bg-lime-400 text-[#242424] absolute z-10 flex items-center justify-center text-sm font-black pointer-events-none'
+        className='w-[80px] h-[80px] rounded-full bg-lime-400 text-[#242424] absolute z-30 flex items-center justify-center text-sm font-black pointer-events-none'
         variants={scaleAnimation}
         initial='initial'
         animate={active ? 'enter' : 'closed'}
