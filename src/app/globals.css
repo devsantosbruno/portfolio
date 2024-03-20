@@ -71,6 +71,10 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-hidden;
   }
+}
+
+.containerTeste{
+  padding: 0 40px;
 }
