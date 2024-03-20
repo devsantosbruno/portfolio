@@ -14,7 +14,7 @@ export function Footer() {
   });
   const x = useTransform(scrollYProgress, [0, 1], [-200, 100]);
   const y = useTransform(scrollYProgress, [0, 1], [-500, 0]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [120, 90]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [180, 90]);
 
   return (
     <motion.div
@@ -22,7 +22,7 @@ export function Footer() {
       ref={container}
       className='containerTeste text-white flex flex-col items-center justify-center bg-[#1d1e21] relative'
     >
-      <div className='pt-52 pb-24 px-40 w-full max-w-[1800px] bg-[#1C1D20]'>
+      <div className='pt-52 pb-10 md:pb-24 lg:px-40 w-full max-w-[1800px] bg-[#1d1e21]'>
         <div className='flex justify-between items-center'>
           <div className='flex flex-col'>
             <div className='flex items-center gap-4'>
@@ -35,12 +35,12 @@ export function Footer() {
                 />
               </div>
 
-              <h2 className='text-8xl tracking-tighter leading-[0.8] font-black'>
+              <h2 className='text-4xl md:text-8xl tracking-tighter leading-[0.8] font-black'>
                 Let's work
               </h2>
             </div>
 
-            <h2 className='text-8xl tracking-tighter leading-[0.8] font-black'>
+            <h2 className='text-6xl md:text-8xl tracking-tighter leading-[0.8] font-black'>
               together
             </h2>
           </div>
@@ -63,9 +63,9 @@ export function Footer() {
         <div className='border-b-[1px] border-b-lime-300 pb-28 relative'>
           <motion.div
             style={{ x }}
-            className='absolute right-[400px] top-[15px]'
+            className='absolute right-[400px] top-7 md:top-4'
           >
-            <RoundedButton className='w-48 h-48 bg-white text-black rounded-full absolute flex items-center justify-center cursor-pointer shadow-2xl'>
+            <RoundedButton className='w-40 h-40 md:w-48 md:h-48 bg-white text-black rounded-full absolute flex items-center justify-center cursor-pointer shadow-2xl'>
               <p className='m-0 text-base font-thin z-10 relative'>
                 get in touch
               </p>
@@ -73,12 +73,14 @@ export function Footer() {
           </motion.div>
         </div>
 
-        <div className='flex justify-center mr-16 mt-32'>
+        <div className='flex justify-center md:mr-16 mt-32'>
           <p>contato@bytrama.com</p>
         </div>
 
-        <div className='flex items-end justify-between mt-20'>
-          <span className='italic font-thin'>2024 © Edition</span>
+        <div className='flex flex-col-reverse md:flex-row md:items-end justify-between gap-10 mt-20'>
+          <span className='italic font-thin text-end md:text-start'>
+            2024 © Edition
+          </span>
 
           <div className='flex flex-col gap-4'>
             <h3 className='m-0 text-lime-400 font-light text-base'>Socials</h3>
