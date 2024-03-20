@@ -23,7 +23,9 @@ export default function RootLayout({
         <Header />
 
         <SmoothScroll>
-          <main className='min-h-screen w-screen bg-black'>{children}</main>
+          <main className='min-h-screen w-screen bg-black overflow-hidden'>
+            {children}
+          </main>
         </SmoothScroll>
 
         <Footer />
