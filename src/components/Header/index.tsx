@@ -12,7 +12,6 @@ export function Header() {
   useEffect(() => {
     if (isActive) {
       setIsActive(false);
-      window.document.body.style.overflow = 'hidden';
     }
   }, [pathname]);
 
