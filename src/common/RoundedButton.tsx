@@ -4,7 +4,7 @@ import Magnetic from './Magnetic';
 
 export function RoundedButton({
   children,
-  backgroundColor = '#455CE9',
+  backgroundColor = '#242424',
   ...attributes
 }: any) {
   const circle = useRef(null);
