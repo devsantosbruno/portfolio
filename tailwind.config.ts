@@ -51,6 +51,9 @@ const config = {
 				md: "calc(var(--radius) - 2px)",
 				sm: "calc(var(--radius) - 4px)",
 			},
+			boxShadow: {
+				contact: "0px 60px 50px rgba(0, 0, 0, 0.748)",
+			},
 			keyframes: {
 				"accordion-down": {
 					from: { height: "0" },

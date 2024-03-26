@@ -42,7 +42,7 @@ export function Courses() {
       </div>
 
       <motion.div style={{ height }} className='relative mt-28'>
-        <div className='h-[1550%] w-[120%] -left-[10%] rounded-b-[50%] bg-black z-10 absolute shadow-2xl' />
+        <div className='h-[1550%] w-[120%] -left-[10%] rounded-b-[50%] bg-black z-10 absolute shadow-contact' />
       </motion.div>
     </div>
   );
