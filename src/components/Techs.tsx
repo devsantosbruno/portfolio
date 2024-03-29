@@ -1,63 +1,63 @@
-'use client';
+"use client";
 
-import { techs } from '@/mocks/techs';
-import { useEffect, useState } from 'react';
-import { InfiniteMovingCards } from './ui/infinite-moving-cards';
+import { techs } from "@/mocks/techs";
+import { useEffect, useState } from "react";
+import { InfiniteMovingCards } from "./ui/infinite-moving-cards";
 
 export function Techs() {
-  const [arrayNormalized, setArrayNormalized] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+	const [arrayNormalized, setArrayNormalized] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
-  const minimalForLine = 8;
+	const minimalForLine = 8;
 
-  function calculateNumberOfLines(items: string[], minimalForLine: number) {
-    let rowsQuantity = minimalForLine;
+	function calculateNumberOfLines(items: string[], minimalForLine: number) {
+		let rowsQuantity = minimalForLine;
 
-    for (let i = minimalForLine; i >= 3; i--) {
-      if (items.length % i === 0 && items.length / i >= minimalForLine) {
-        rowsQuantity = i;
-        break;
-      }
-    }
+		for (let i = minimalForLine; i >= 3; i--) {
+			if (items.length % i === 0 && items.length / i >= minimalForLine) {
+				rowsQuantity = i;
+				break;
+			}
+		}
 
-    return rowsQuantity;
-  }
+		return rowsQuantity;
+	}
 
-  function splitArrayOfObjectsIntoFractions(
-    array: string[],
-    numFracoes: number
-  ) {
-    const fractionSize = Math.ceil(array.length / numFracoes);
-    const fractionList = [];
+	function splitArrayOfObjectsIntoFractions(
+		array: string[],
+		numFracoes: number,
+	) {
+		const fractionSize = Math.ceil(array.length / numFracoes);
+		const fractionList = [];
 
-    for (let i = 0; i < array.length; i += fractionSize) {
-      const fraction = array.slice(i, i + fractionSize);
-      fractionList.push(fraction);
-    }
+		for (let i = 0; i < array.length; i += fractionSize) {
+			const fraction = array.slice(i, i + fractionSize);
+			fractionList.push(fraction);
+		}
 
-    setArrayNormalized(fractionList);
-  }
+		setArrayNormalized(fractionList);
+	}
 
-  useEffect(() => {
-    setIsLoading(true);
-    const calculatedRows = calculateNumberOfLines(techs, minimalForLine);
-    splitArrayOfObjectsIntoFractions(techs, calculatedRows);
+	useEffect(() => {
+		setIsLoading(true);
+		const calculatedRows = calculateNumberOfLines(techs, minimalForLine);
+		splitArrayOfObjectsIntoFractions(techs, calculatedRows);
 
-    setIsLoading(false);
-  }, []);
+		setIsLoading(false);
+	}, []);
 
-  return (
-    !isLoading && (
-      <div className='rounded-md flex flex-col antialiased bg-lime-500 items-center justify-center relative overflow-hidden'>
-        {arrayNormalized.map((_, index) => (
-          <InfiniteMovingCards
-            items={arrayNormalized[index]}
-            direction={index % 2 === 0 ? 'right' : 'left'}
-            speed='normal'
-            key={index}
-          />
-        ))}
-      </div>
-    )
-  );
+	return (
+		!isLoading && (
+			<div className="rounded-md flex flex-col antialiased bg-lime-500 items-center justify-center relative overflow-hidden">
+				{arrayNormalized.map((_, index) => (
+					<InfiniteMovingCards
+						items={arrayNormalized[index]}
+						direction={index % 2 === 0 ? "right" : "left"}
+						speed="normal"
+						key={index}
+					/>
+				))}
+			</div>
+		)
+	);
 }

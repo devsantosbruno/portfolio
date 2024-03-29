@@ -1,11 +1,11 @@
-import { useScroll as useScrollFramerMotion } from 'framer-motion';
+import { useScroll as useScrollFramerMotion } from "framer-motion";
 
 export function useScroll(Target: any, Offset: any) {
-  const { scrollYProgress } = useScrollFramerMotion({
-    target: Target,
+	const { scrollYProgress } = useScrollFramerMotion({
+		target: Target,
 
-    offset: Offset,
-  });
+		offset: Offset,
+	});
 
-  return scrollYProgress;
+	return scrollYProgress;
 }
