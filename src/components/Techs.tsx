@@ -1,78 +1,63 @@
-import { HeroParallax } from "./ui/hero-parallax";
+'use client';
+
+import { techs } from '@/mocks/techs';
+import { useEffect, useState } from 'react';
+import { InfiniteMovingCards } from './ui/infinite-moving-cards';
 
 export function Techs() {
-	const techs = [
-		{
-			title: "React",
-			link: "https://react.dev/",
-			image: "react.svg",
-		},
-		{
-			title: "React",
-			link: "https://react.dev/",
-			image: "react.svg",
-		},
-		{
-			title: "React",
-			link: "https://react.dev/",
-			image: "react.svg",
-		},
-		{
-			title: "React",
-			link: "https://react.dev/",
-			image: "react.svg",
-		},
-		{
-			title: "React",
-			link: "https://react.dev/",
-			image: "react.svg",
-		},
-		{
-			title: "React",
-			link: "https://react.dev/",
-			image: "react.svg",
-		},
-		{
-			title: "React",
-			link: "https://react.dev/",
-			image: "react.svg",
-		},
-		{
-			title: "React",
-			link: "https://react.dev/",
-			image: "react.svg",
-		},
-		{
-			title: "React",
-			link: "https://react.dev/",
-			image: "react.svg",
-		},
-		{
-			title: "React",
-			link: "https://react.dev/",
-			image: "react.svg",
-		},
-		{
-			title: "React",
-			link: "https://react.dev/",
-			image: "react.svg",
-		},
-		{
-			title: "React",
-			link: "https://react.dev/",
-			image: "react.svg",
-		},
-		{
-			title: "React",
-			link: "https://react.dev/",
-			image: "react.svg",
-		},
-		{
-			title: "React",
-			link: "https://react.dev/",
-			image: "react.svg",
-		},
-	];
+  const [arrayNormalized, setArrayNormalized] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-	return <HeroParallax techs={techs} />;
+  const minimalForLine = 8;
+
+  function calculateNumberOfLines(items: string[], minimalForLine: number) {
+    let rowsQuantity = minimalForLine;
+
+    for (let i = minimalForLine; i >= 3; i--) {
+      if (items.length % i === 0 && items.length / i >= minimalForLine) {
+        rowsQuantity = i;
+        break;
+      }
+    }
+
+    return rowsQuantity;
+  }
+
+  function splitArrayOfObjectsIntoFractions(
+    array: string[],
+    numFracoes: number
+  ) {
+    const fractionSize = Math.ceil(array.length / numFracoes);
+    const fractionList = [];
+
+    for (let i = 0; i < array.length; i += fractionSize) {
+      const fraction = array.slice(i, i + fractionSize);
+      fractionList.push(fraction);
+    }
+
+    setArrayNormalized(fractionList);
+  }
+
+  useEffect(() => {
+    setIsLoading(true);
+    const calculatedRows = calculateNumberOfLines(techs, minimalForLine);
+    splitArrayOfObjectsIntoFractions(techs, calculatedRows);
+
+    setIsLoading(false);
+  }, []);
+
+  return (
+    !isLoading && (
+      <div className='rounded-md flex flex-col antialiased bg-lime-500 items-center justify-center relative overflow-hidden'>
+        {arrayNormalized.map((_, index) => (
+          <InfiniteMovingCards
+            items={arrayNormalized[index]}
+            direction={index % 2 === 0 ? 'right' : 'left'}
+            speed='normal'
+            key={index}
+          />
+        ))}
+      </div>
+    )
+  );
 }
