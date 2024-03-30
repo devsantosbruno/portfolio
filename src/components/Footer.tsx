@@ -20,14 +20,13 @@ export function Footer() {
   function handleClickNavigate() {
     if (pathname === '/contact') {
       const element = document.getElementById('contact');
-      console.log('CAIU AQUI DENTRO', element);
       return element?.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
       });
     }
 
-    return router.push('/contact', { scroll: true });
+    return router.push('/contact');
   }
 
   return (
