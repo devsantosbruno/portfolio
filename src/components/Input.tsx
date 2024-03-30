@@ -1,26 +1,35 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
-export default function Input() {
-	const [testeInput, setTesteInput] = useState("");
-	const [numberSize, setNumberSize] = useState(0);
+export function Input() {
+  const ref = useRef(null);
 
-	useEffect(() => {
-		setNumberSize(testeInput.length + 1);
-	}, [testeInput]);
+  const [width, setWidth] = useState(0);
+  const [testeInput, setTesteInput] = useState('');
 
-	// text-pink-400
+  useEffect(() => {
+    const { offsetWidth } = ref.current;
+    setWidth(offsetWidth);
+  }, [testeInput]);
 
-	return (
-		<input
-			type="text"
-			className="inline-flex text-lime-400 bg-transparent border-none outline-none"
-			onChange={(e) => setTesteInput(e.target.value)}
-			style={{
-				width: numberSize === 1 ? 16 : numberSize + "rem",
-			}}
-			required
-		/>
-	);
+  return (
+    <>
+      <div className='absolute opacity-0'>
+        <h2 className='text-4xl text-white inline-flex break-words' ref={ref}>
+          {testeInput}
+        </h2>
+      </div>
+
+      <input
+        type='text'
+        className='inline-flex text-lime-400 bg-transparent border-none outline-none'
+        onChange={(e) => setTesteInput(e.target.value)}
+        style={{
+          width: width === 0 ? 16 : `${(width + 8) / 16}rem`,
+        }}
+        required
+      />
+    </>
+  );
 }
