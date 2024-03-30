@@ -1,6 +1,7 @@
 'use client';
 
 import { Input } from '@/components/Input';
+import { Title } from '@/components/Title';
 import { useScroll } from '@/hooks/useScroll';
 import { motion, useTransform } from 'framer-motion';
 import { useRef } from 'react';
@@ -12,7 +13,11 @@ export default function Contact() {
 
   return (
     <section ref={container} className='z-20 relative bg-black'>
-      <div className='containerTeste min-h-screen flex items-center justify-center'>
+      <div className='containerTeste min-h-screen flex flex-col items-center justify-center'>
+        <Title className='uppercase mr-auto'>
+          Preencha os campos e <br /> entraremos em contato
+        </Title>
+
         <div className='flex flex-col gap-10'>
           <h2 className='text-4xl text-white'>
             Meu nome é{' '}
