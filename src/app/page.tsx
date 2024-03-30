@@ -43,7 +43,8 @@ export default function Home() {
       <section className='w-screen flex flex-col justify-between bg-lime-500 py-20'>
         <div className='containerTeste'>
           <Title>
-            Tech Fusion <br /> Blending Creativity and Performance for Impact
+            Tech Fusion <br /> Blending Creativity and <br /> Performance for
+            Impact
           </Title>
         </div>
 
@@ -62,7 +63,7 @@ export default function Home() {
 
       <section className='py-20 bg-black'>
         <div className='containerTeste'>
-          <h2 className='text-6xl md:text-9xl text-white mb-16 md:mb-24 font-black tracking-tighter leading-[0.8]'>
+          <h2 className='text-[3.75rem] md:text-[8rem] text-white mb-16 md:mb-24 font-black tracking-tighter leading-[0.8]'>
             COURSES
             <br />
             AND
