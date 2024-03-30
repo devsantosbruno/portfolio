@@ -12,7 +12,11 @@ export default function Contact() {
   const height = useTransform(scrollYProgress, [0, 1.01], [50, 0]);
 
   return (
-    <section ref={container} className='z-20 relative bg-black'>
+    <section
+      ref={container}
+      className='z-20 relative bg-black py-20'
+      id='contact'
+    >
       <div className='containerTeste min-h-screen flex flex-col items-center justify-center'>
         <Title className='uppercase mr-auto'>
           Preencha os campos e <br /> entraremos em contato
