@@ -1,9 +1,19 @@
+'use client';
+import { animatePageOut } from '@/components/PageTransition/animation';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import { scale, slide } from '../animation';
 
 export function Item({ data, isActive, setSelectedIndicator }: any) {
   const { title, href, index } = data;
+  const pathname = usePathname();
+  const router = useRouter();
+
+  function handleClick() {
+    if (pathname !== href) {
+      animatePageOut(href, router);
+    }
+  }
 
   return (
     <motion.div
@@ -22,14 +32,15 @@ export function Item({ data, isActive, setSelectedIndicator }: any) {
         animate={isActive ? 'open' : 'closed'}
         className='w-3 h-3 bg-white rounded-full absolute -left-8'
       />
-      <Link
-        href={href}
+      <button
+        type='button'
         className={`font-black transition duration-500 tracking-tighter hover:text-lime-400 ${
           isActive && 'text-lime-400'
         }`}
+        onClick={handleClick}
       >
         {title}
-      </Link>
+      </button>
     </motion.div>
   );
 }

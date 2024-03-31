@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useRef } from 'react';
+import { animatePageOut } from './PageTransition/animation';
 
 export function Footer() {
   const pathname = usePathname();
@@ -17,16 +18,16 @@ export function Footer() {
   const y = useTransform(scrollYProgress, [0, 1], [-500, 0]);
   const rotate = useTransform(scrollYProgress, [0, 1], [180, 90]);
 
-  function handleClickNavigate() {
-    if (pathname === '/contact') {
-      const element = document.getElementById('contact');
-      return element?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
+  function handleClick() {
+    if (pathname !== '/contact') {
+      return animatePageOut('contact', router);
     }
 
-    return router.push('/contact');
+    const element = document.getElementById('contact');
+    return element?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
   }
 
   return (
@@ -80,7 +81,7 @@ export function Footer() {
           >
             <RoundedButton
               className='w-40 h-40 md:w-48 md:h-48 bg-white text-black rounded-full absolute flex items-center justify-center cursor-pointer shadow-2xl'
-              onClick={handleClickNavigate}
+              onClick={handleClick}
             >
               <p className='m-0 text-base font-thin z-10 relative'>
                 get in touch
