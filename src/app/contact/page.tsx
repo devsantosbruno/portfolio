@@ -4,24 +4,17 @@ import { Input } from '@/components/Input';
 import { Title } from '@/components/Title';
 import { useScroll } from '@/hooks/useScroll';
 import { motion, useTransform } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 export default function Contact() {
   const container = useRef(null);
   const scrollYProgress = useScroll(container, ['start end', 'end start']);
   const height = useTransform(scrollYProgress, [0, 1.01], [50, 0]);
 
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  }, []);
-
   return (
     <section
       ref={container}
-      className='z-20 relative bg-black py-20'
+      className='z-10 relative bg-black py-20'
       id='contact'
     >
       <div className='containerTeste min-h-screen flex flex-col items-center justify-center'>
