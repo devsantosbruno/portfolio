@@ -10,6 +10,13 @@ export function Header() {
   const pathname = usePathname();
 
   useEffect(() => {
+    localStorage.setItem('firstAccess', JSON.stringify(true));
+    setTimeout(() => {
+      localStorage.removeItem('firstAccess');
+    }, 5000);
+  }, []);
+
+  useEffect(() => {
     if (isActive) {
       setIsActive(false);
     }

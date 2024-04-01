@@ -8,8 +8,12 @@ import { useEffect, useState } from 'react';
 
 export default function Template({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
+  const [isFirstAccess, setIsFirstAccess] = useState(true);
 
   useEffect(() => {
+    const isFirstAccess = localStorage.getItem('firstAccess');
+    setIsFirstAccess(Boolean(isFirstAccess));
+
     setTimeout(() => {
       setIsLoading(false);
       window.scrollTo(0, 0);
@@ -19,7 +23,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
   return (
     <div>
       <AnimatePresence mode='wait'>
-        {isLoading ? (
+        {isFirstAccess && isLoading ? (
           <Preloader />
         ) : (
           <>
