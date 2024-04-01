@@ -24,7 +24,7 @@ export function Header() {
 
   return (
     <>
-      <div className='fixed right-0 z-40'>
+      <div className='fixed right-0 z-50'>
         <RoundedButton
           onClick={() => {
             setIsActive(!isActive);
@@ -32,7 +32,7 @@ export function Header() {
           className='relative m-6 w-20 h-20 rounded-full bg-[#242424] cursor-pointer flex items-center justify-center shadow-2xl'
         >
           <div
-            className={`w-full relative z-40 before:block before:h-px before:w-2/5 before:m-auto before:bg-white before:relative before:transition before:duration-500 after:block after:h-px after:w-2/5 after:m-auto after:bg-white after:relative after:transition after:duration-500 ${
+            className={`w-full relative z-50 before:block before:h-px before:w-2/5 before:m-auto before:bg-white before:relative before:transition before:duration-500 after:block after:h-px after:w-2/5 after:m-auto after:bg-white after:relative after:transition after:duration-500 ${
               isActive
                 ? 'burgerActive before:top-0 before:-rotate-45 before:bg-white after:-top-px after:rotate-45 after:bg-white'
                 : 'before:top-1 after:-top-1'
