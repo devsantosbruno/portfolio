@@ -17,8 +17,8 @@ export default function Contact() {
       className='z-10 relative bg-black py-20'
       id='contact'
     >
-      <div className='containerTeste min-h-screen flex flex-col items-center justify-center'>
-        <Title className='uppercase mr-auto'>
+      <div className='containerTeste min-h-[125vh]'>
+        <Title className='uppercase mr-auto pt-[15vh]'>
           Preencha os campos e <br /> entraremos em contato
         </Title>
 
