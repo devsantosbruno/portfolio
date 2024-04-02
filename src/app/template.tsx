@@ -1,6 +1,7 @@
 'use client';
 
 import { Cursor } from '@/components/Cursor';
+import { Footer } from '@/components/Footer';
 import { PageTransition } from '@/components/PageTransition';
 import { Preloader } from '@/components/Preloader';
 import { AnimatePresence } from 'framer-motion';
@@ -17,7 +18,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
     setTimeout(() => {
       setIsLoading(false);
       window.scrollTo(0, 0);
-    }, 3500);
+    }, 5000);
   }, []);
 
   return (
@@ -28,8 +29,8 @@ export default function Template({ children }: { children: React.ReactNode }) {
         ) : (
           <>
             <Cursor />
-            <PageTransition />
-            {children}
+            <PageTransition>{children}</PageTransition>
+            <Footer />
           </>
         )}
       </AnimatePresence>

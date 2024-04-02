@@ -24,8 +24,6 @@ export default function RootLayout({
           <Header />
 
           <main className='min-h-screen w-screen bg-black'>{children}</main>
-
-          <Footer />
         </SmoothScroll>
       </body>
     </html>
