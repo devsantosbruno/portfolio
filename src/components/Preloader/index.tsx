@@ -25,7 +25,9 @@ export function Preloader() {
   }, []);
 
   useEffect(() => {
-    if (index === words.length - 1) return;
+    if (index === words.length - 1) {
+      return;
+    }
     setTimeout(
       () => {
         setIndex(index + 1);
@@ -34,52 +36,32 @@ export function Preloader() {
     );
   }, [index]);
 
-  const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${
-    dimension.height
-  } Q${dimension.width / 2} ${dimension.height + 300} 0 ${
-    dimension.height
-  }  L0 0`;
-  const targetPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${
-    dimension.height
-  } Q${dimension.width / 2} ${dimension.height} 0 ${dimension.height}  L0 0`;
-
-  const curve = {
-    initial: {
-      d: initialPath,
-      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
-    },
-    exit: {
-      d: targetPath,
-      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: 0.3 },
-    },
-  };
-
   return (
     <motion.div
-      variants={slideUp}
-      initial='initial'
-      exit='exit'
-      className='h-screen w-screen flex items-center justify-center fixed z-50 bg-[#1d1e21] cursor-wait'
+      className='fixed z-50 cursor-wait overflow-hidden h-[200vh]'
+      initial={{ top: 0 }}
+      animate={{ top: '-200vh' }}
+      transition={{ duration: 2, delay: 3.5 }}
     >
       {dimension.width > 0 && (
         <>
-          <motion.p
-            variants={opacity}
-            initial='initial'
-            animate='enter'
-            className='text-lime-200 text-[5rem] items-center absolute z-50 font-black leading-[0.8] tracking-tighter'
-          >
-            {words[index]}
-          </motion.p>
+          <div className='h-screen w-screen bg-[#1d1e21] flex items-center justify-center'>
+            <motion.p
+              className='text-lime-400 text-[5rem] font-black leading-[0.8] tracking-tighter my-0'
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.25 }}
+            >
+              {words[index]}
+            </motion.p>
+          </div>
 
-          <svg className='absolute top-0 w-full h-[calc(100% + 300px)]'>
-            <motion.path
-              variants={curve}
-              initial='initial'
-              exit='exit'
-              className='fill-[#1d1e21]'
-            />
-          </svg>
+          <motion.div
+            className='-ml-[10vw] w-[120vw] bg-[#1d1e21] rounded-b-full'
+            initial={{ top: '100vh', height: '100vh' }}
+            animate={{ top: 0, height: '25vh' }}
+            transition={{ duration: 1, delay: 3.5 }}
+          />
         </>
       )}
     </motion.div>
