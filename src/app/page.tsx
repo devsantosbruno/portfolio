@@ -40,9 +40,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className='w-screen flex flex-col justify-between bg-lime-500 py-20'>
+      <section className='w-screen flex flex-col justify-between bg-lime-400 py-20'>
         <div className='containerTeste'>
-          <Title>
+          <Title className='text-black uppercase'>
             Tech Fusion <br /> Blending Creativity and <br /> Performance for
             Impact
           </Title>
