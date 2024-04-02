@@ -6,7 +6,7 @@ import { Title } from '../Title';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 
-export function PageTransition({ children }: any) {
+export function PageTransition({ children }: { children: React.ReactElement }) {
   const router = useRouter();
   const pathname = usePathname();
 

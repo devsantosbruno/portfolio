@@ -7,7 +7,11 @@ import { Preloader } from '@/components/Preloader';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
-export default function Template({ children }: { children: React.ReactNode }) {
+export default function Template({
+  children,
+}: {
+  children: React.ReactElement;
+}) {
   const [isLoading, setIsLoading] = useState(true);
   const [isFirstAccess, setIsFirstAccess] = useState(true);
 

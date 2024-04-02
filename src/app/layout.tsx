@@ -1,4 +1,3 @@
-import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { SmoothScroll } from '@/components/ui/smooth-scroll';
 import type { Metadata } from 'next';
@@ -15,7 +14,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactElement;
 }>) {
   return (
     <html lang='en'>
