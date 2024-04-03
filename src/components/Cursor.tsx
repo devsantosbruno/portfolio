@@ -8,7 +8,7 @@ export function Cursor() {
   const cursorY = useMotionValue(-100);
 
   useEffect(() => {
-    const moveCursor = (e) => {
+    const moveCursor = (e: any) => {
       cursorX.set(e.clientX - 16);
       cursorY.set(e.clientY - 16);
     };
