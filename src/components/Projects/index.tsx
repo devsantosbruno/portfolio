@@ -1,62 +1,77 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Modal } from "./Modal";
-import { Project } from "./Project";
+import { useRef, useState } from 'react';
+import { Project } from './Project';
+import { useScroll, useMotionValueEvent } from 'framer-motion';
 
 export type ModalStateType = {
-	active: boolean;
-	index: number;
+  active: boolean;
+  index: number;
 };
 
 export type ProjectsType = {
-	title: string;
-	src: string;
-	color: string;
+  title: string;
+  preview: string;
+  color: string;
 };
 
 const projects: ProjectsType[] = [
-	{
-		title: "C2 Montreal",
-		src: "c2montreal.png",
-		color: "#000000",
-	},
-	{
-		title: "Office Studio",
-		src: "officestudio.png",
-		color: "#8C8C8C",
-	},
-	{
-		title: "Locomotive",
-		src: "locomotive.png",
-		color: "#EFE8D3",
-	},
-	{
-		title: "Silencio",
-		src: "silencio.png",
-		color: "#706D63",
-	},
+  {
+    title: 'C2 Montreal',
+    preview: 'c2montreal.png',
+    color: '#000000',
+  },
+  {
+    title: 'Office Studio',
+    preview: 'officestudio.png',
+    color: '#8C8C8C',
+  },
+  {
+    title: 'Locomotive',
+    preview: 'locomotive.png',
+    color: '#EFE8D3',
+  },
+  {
+    title: 'Silencio',
+    preview: 'silencio.png',
+    color: '#706D63',
+  },
 ];
 
 export function Projects() {
-	const [modal, setModal] = useState<ModalStateType>({
-		active: false,
-		index: 0,
-	});
+  const [indexActive, setIndexActive] = useState(0);
 
-	return (
-		<>
-			{projects.map((project, index) => {
-				return (
-					<Project
-						index={index}
-						title={project.title}
-						setModal={setModal}
-						key={project.title}
-					/>
-				);
-			})}
-			<Modal modal={modal} projects={projects} />
-		</>
-	);
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ['start end', 'end start'],
+  });
+
+  useMotionValueEvent(scrollYProgress, 'change', (scrollValue) => {
+    const valuePerProject = 1 / projects.length;
+    setIndexActive(scrollValue / valuePerProject);
+  });
+
+  return (
+    <section className='bg-white pt-20'>
+      <div className='containerTeste'>
+        <h2 className='text-6xl md:text-8xl text-black mb-16 md:mb-24 font-black tracking-tighter'>
+          PROJECTS
+        </h2>
+      </div>
+
+      <div ref={container}>
+        {projects.map((project, index) => {
+          return (
+            <Project
+              title={project.title}
+              preview={project.preview}
+              isActive={index === Math.floor(indexActive)}
+              key={project.title}
+            />
+          );
+        })}
+      </div>
+    </section>
+  );
 }
