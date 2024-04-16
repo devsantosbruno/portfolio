@@ -57,6 +57,9 @@ const config = {
 			boxShadow: {
 				contact: "0px 60px 50px rgba(0, 0, 0, 0.748)",
 			},
+			dropShadow: {
+				banner: "0px 60px 125px rgba(0, 0, 0, 1.0)",
+			},
 			keyframes: {
 				"accordion-down": {
 					from: { height: "0" },
@@ -74,6 +77,20 @@ const config = {
 						backgroundPosition: "-200% 0",
 					},
 				},
+				scrollDown: {
+					"0%": {
+						opacity: "0",
+						top: "-5%",
+					},
+					"50%": {
+						opacity: "1",
+						top: "45%",
+					},
+					"100%": {
+						opacity: "0",
+						top: "105%",
+					},
+				},
 				scroll: {
 					to: {
 						transform: "translate(calc(-25% - 0.5rem))",
@@ -85,6 +102,7 @@ const config = {
 				"accordion-up": "accordion-up 0.2s ease-out",
 				"menu-cubic": "all 0.5s cubic-bezier(0.76, 0, 0.24, 1)",
 				shimmer: "shimmer 2s linear infinite",
+				scrollDown: "scrollDown 2.5s linear infinite",
 				scroll:
 					"scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
 			},

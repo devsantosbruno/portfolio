@@ -1,12 +1,12 @@
+import { Cursor } from "@/components/Cursor";
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { PageTransition } from "@/components/PageTransition";
+import { Preloader } from "@/components/Preloader";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Footer } from "@/components/Footer";
-import { Cursor } from "@/components/Cursor";
-import { PageTransition } from "@/components/PageTransition";
-import { Preloader } from "@/components/Preloader";
 
 const inter = Inter({ subsets: ["latin"] });
 
