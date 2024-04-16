@@ -93,6 +93,7 @@ export function BannerAndAbout() {
 				<div
 					className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/10"
 					style={{
+						// @ts-ignore
 						"--tw-gradient-to-position": `${heightTeste}px`,
 					}}
 				/>
