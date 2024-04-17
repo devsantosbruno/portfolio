@@ -1,10 +1,10 @@
 "use client";
 
+import { Container, Title } from "@/components";
 import { useScroll } from "@/hooks/useScroll";
 import { motion, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { Title } from "../Title";
 import { ParallaxText } from "./ParallaxText";
 
 export function BannerAndAbout() {
@@ -114,7 +114,7 @@ export function BannerAndAbout() {
 					className="absolute inset-x-0 bottom-0 object-contain w-full h-full"
 				/>
 
-				<div className="containerTeste bg-transparent mb-10">
+				<Container className="bg-transparent mb-10">
 					<h2 className="text-6xl md:text-9xl lg:text-[15rem] text-white mb-24 font-black tracking-tighter leading-[0.8] bg-transparent">
 						ABOUT <br /> ME
 					</h2>
@@ -131,7 +131,7 @@ export function BannerAndAbout() {
               explore the world.
             </h3>
           </div> */}
-				</div>
+				</Container>
 			</section>
 		</>
 	);

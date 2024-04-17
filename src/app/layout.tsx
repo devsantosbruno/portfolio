@@ -1,11 +1,14 @@
-import { Cursor } from "@/components/Cursor";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
-import { PageTransition } from "@/components/PageTransition";
-import { Preloader } from "@/components/Preloader";
-import { SmoothScroll } from "@/components/ui/smooth-scroll";
+import {
+	Cursor,
+	Footer,
+	Header,
+	PageTransition,
+	Preloader,
+} from "@/components";
+import { SmoothScroll } from "@/components/ui";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Head from "next/head";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,6 +25,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
+			<Head>
+				<meta charSet="utf-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+			</Head>
+
 			<body className={inter.className}>
 				<Cursor />
 				<Preloader />

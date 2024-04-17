@@ -1,8 +1,8 @@
 "use client";
 
+import { InfiniteMovingCards } from "@/components/ui";
 import { techs } from "@/mocks/techs";
 import { useEffect, useState } from "react";
-import { InfiniteMovingCards } from "./ui/infinite-moving-cards";
 
 export function Techs() {
 	const [arrayNormalized, setArrayNormalized] = useState([]);

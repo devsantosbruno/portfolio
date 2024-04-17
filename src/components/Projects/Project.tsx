@@ -1,3 +1,4 @@
+import { Container } from "@/components";
 import Image from "next/image";
 
 type ProjectType = {
@@ -13,7 +14,7 @@ export function Project({ title, preview, isActive }: ProjectType) {
 				isActive && "bg-lime-400"
 			}`}
 		>
-			<div className="containerTeste flex justify-between items-center relative">
+			<Container className="flex justify-between items-center relative">
 				<h2
 					className={`lg:text-[60px] m-0 font-thin transition duration-500 max-w-[50vw] ${
 						isActive && "-translate-x-4"
@@ -28,7 +29,7 @@ export function Project({ title, preview, isActive }: ProjectType) {
 				>
 					Design & Development
 				</p>
-			</div>
+			</Container>
 
 			{isActive && (
 				<div className="absolute right-8 md:inset-x-0 bottom-[-50%] z-10 h-[200%] w-[40vw] lg:w-[300px] bg-[#242424] shadow-contact p-4 mx-auto transition duration-1000">

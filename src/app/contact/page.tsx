@@ -1,7 +1,6 @@
 "use client";
 
-import { Input } from "@/components/Input";
-import { Title } from "@/components/Title";
+import { Container, Input, Title } from "@/components";
 import { useScroll } from "@/hooks/useScroll";
 import { motion, useTransform } from "framer-motion";
 import { useRef } from "react";
@@ -17,7 +16,7 @@ export default function Contact() {
 			className="z-10 relative bg-black py-20"
 			id="contact"
 		>
-			<div className="containerTeste min-h-[125vh]">
+			<Container className="min-h-[125vh]">
 				<Title className="uppercase mr-auto pt-[15vh]">
 					Preencha os campos e <br /> entraremos em contato
 				</Title>
@@ -67,7 +66,7 @@ export default function Contact() {
 						</button>
 					</div>
 				</div>
-			</div>
+			</Container>
 
 			<motion.div style={{ height }} className="relative mt-28">
 				<div className="h-[1550%] w-[120%] -left-[10%] rounded-b-[50%] bg-black z-10 absolute shadow-contact" />
