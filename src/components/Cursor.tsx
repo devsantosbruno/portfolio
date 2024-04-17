@@ -4,29 +4,38 @@ import { motion, useMotionValue } from "framer-motion";
 import { useEffect } from "react";
 
 export function Cursor() {
-	const cursorX = useMotionValue(-100);
-	const cursorY = useMotionValue(-100);
+	const isMobile =
+		/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+			navigator.userAgent,
+		);
 
-	useEffect(() => {
-		const moveCursor = (e: any) => {
-			cursorX.set(e.clientX - 16);
-			cursorY.set(e.clientY - 16);
-		};
+	console.log("isMobileisMobile", isMobile);
 
-		window.addEventListener("mousemove", moveCursor);
+	if (!isMobile) {
+		const cursorX = useMotionValue(-100);
+		const cursorY = useMotionValue(-100);
 
-		return () => {
-			window.removeEventListener("mousemove", moveCursor);
-		};
-	}, [cursorX, cursorY]);
+		useEffect(() => {
+			const moveCursor = (e: any) => {
+				cursorX.set(e.clientX - 16);
+				cursorY.set(e.clientY - 16);
+			};
 
-	return (
-		<motion.div
-			className="fixed left-0 top-0 w-8 h-8 hover:w-20 hover:h-20 rounded-2xl mix-blend-difference bg-lime-400 z-[99] pointer-events-none transition duration-500 ease-out"
-			style={{
-				translateX: cursorX,
-				translateY: cursorY,
-			}}
-		/>
-	);
+			window.addEventListener("mousemove", moveCursor);
+
+			return () => {
+				window.removeEventListener("mousemove", moveCursor);
+			};
+		}, [cursorX, cursorY]);
+
+		return (
+			<motion.div
+				className="fixed left-0 top-0 w-8 h-8 hover:w-20 hover:h-20 rounded-2xl mix-blend-difference bg-lime-400 z-[99] pointer-events-none transition duration-500 ease-out"
+				style={{
+					translateX: cursorX,
+					translateY: cursorY,
+				}}
+			/>
+		);
+	}
 }
