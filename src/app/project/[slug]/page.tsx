@@ -1,8 +1,9 @@
 "use client";
 
+import { Container } from "@/components";
 import { useScroll } from "@/hooks/useScroll";
-import { projects, type ProjectType } from "@/mocks/projects";
-import { useTransform, motion } from "framer-motion";
+import { type ProjectType, projects } from "@/mocks/projects";
+import { motion, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -33,7 +34,7 @@ export default function Project({ params }: { params: ProjectType }) {
 	return (
 		<section ref={container} className="z-10 relative bg-white text-white">
 			<div className="bg-[#303030] pt-10 pb-40">
-				<div className="containerTeste">
+				<Container>
 					<div className="flex justify-center items-center gap-5 font-thin tracking-tighter leading-[0.8]">
 						<button type="button" className="text-lime-400 font-bold">
 							Project
@@ -90,11 +91,11 @@ export default function Project({ params }: { params: ProjectType }) {
 							{project.resume}
 						</span>
 					</div>
-				</div>
+				</Container>
 			</div>
 
 			<div className="bg-white text-black pt-20">
-				<div className="containerTeste grid grid-cols-2 items-start gap-20">
+				<Container className="grid grid-cols-2 items-start gap-20">
 					<div className="flex flex-col gap-10">
 						<span className="text-xl max-w-[500px] tracking-tighter leading-[0.8]">
 							{project.description}
@@ -124,7 +125,7 @@ export default function Project({ params }: { params: ProjectType }) {
 								),
 						)}
 					</div>
-				</div>
+				</Container>
 			</div>
 
 			<motion.div style={{ height }} className="relative mt-28">

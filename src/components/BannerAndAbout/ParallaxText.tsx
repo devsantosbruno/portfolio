@@ -1,3 +1,4 @@
+import { Title } from "@/components";
 import {
 	motion,
 	useAnimationFrame,
@@ -9,7 +10,6 @@ import {
 	wrap,
 } from "framer-motion";
 import { useRef } from "react";
-import { Title } from "../Title";
 
 type ParallaxProps = {
 	children: string;

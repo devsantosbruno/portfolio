@@ -1,8 +1,9 @@
 "use client";
 
+import { Container } from "@/components";
+import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useRef, useState } from "react";
 import { Project } from "./Project";
-import { useScroll, useMotionValueEvent } from "framer-motion";
 
 export type ModalStateType = {
 	active: boolean;
@@ -54,11 +55,11 @@ export function Projects() {
 
 	return (
 		<section className="bg-white pt-20">
-			<div className="containerTeste">
+			<Container>
 				<h2 className="text-6xl md:text-8xl text-black mb-16 md:mb-24 font-black tracking-tighter">
 					PROJECTS
 				</h2>
-			</div>
+			</Container>
 
 			<div ref={container}>
 				{projects.map((project, index) => {
