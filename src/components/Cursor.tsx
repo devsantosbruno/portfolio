@@ -2,16 +2,10 @@
 
 import { motion, useMotionValue } from "framer-motion";
 import { useEffect } from "react";
+import { isDesktop } from "react-device-detect";
 
 export function Cursor() {
-	const isMobile =
-		/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-			navigator.userAgent,
-		);
-
-	console.log("isMobileisMobile", isMobile);
-
-	if (!isMobile) {
+	if (isDesktop) {
 		const cursorX = useMotionValue(-100);
 		const cursorY = useMotionValue(-100);
 
