@@ -1,6 +1,6 @@
 "use client";
 
-import { Container, Title } from "@/components";
+import { Container } from "@/components";
 import { useScroll } from "@/hooks/useScroll";
 import { motion, useTransform } from "framer-motion";
 import Image from "next/image";
@@ -8,21 +8,25 @@ import { useEffect, useRef, useState } from "react";
 import { ParallaxText } from "./ParallaxText";
 
 export function BannerAndAbout() {
+	const firstElementPosition = document
+		.getElementById("initialElement")
+		?.getBoundingClientRect();
+	const secondElementPosition = document
+		.getElementById("endElement")
+		?.getBoundingClientRect();
+
+	const positionTop = secondElementPosition?.top - firstElementPosition?.top;
+	const positionLeft = secondElementPosition?.left - firstElementPosition?.left;
+
 	const container = useRef(null);
 	const [heightTeste, setHeightTeste] = useState(0);
 	const scrollYProgress = useScroll(container, ["end end", "end start"]);
-	const top = useTransform(scrollYProgress, [0, 0.8], ["0vh", "100vh"]);
-	const left = useTransform(
+	const top = useTransform(scrollYProgress, [0, 0.8], [0, positionTop]);
+	const left = useTransform(scrollYProgress, [0, 0.8], [0, positionLeft]);
+	const color = useTransform(
 		scrollYProgress,
-		[0, 0.8],
-		["calc(0% - -40px)", "calc(100% - 80px)"],
-	);
-
-	const scale = useTransform(scrollYProgress, [0, 0.4, 0.8], [1, 4, 1]);
-	const rotateZ = useTransform(
-		scrollYProgress,
-		[0, 0.4, 0.8],
-		["0deg", "180deg", "360deg"],
+		[0, 0.2, 0.8],
+		["#fff", "#a3e635", "#fff"],
 	);
 
 	useEffect(() => {
@@ -38,37 +42,6 @@ export function BannerAndAbout() {
 				className="h-screen w-screen flex flex-col items-center py-20 relative"
 				ref={container}
 			>
-				<div className="containerTest w-full">
-					<div className="relative">
-						<motion.div
-							className="absolute flex gap-1 justify-center text-lime-400 text-6xl font-thin z-50"
-							style={{ top, left, scale, rotateZ }}
-						>
-							<motion.span
-								style={{
-									scale,
-									rotateZ,
-									transitionDuration: "0.6s",
-								}}
-							>
-								&#40;
-							</motion.span>
-
-							<motion.span
-								className="flex flex-col justify-evenly"
-								style={{ scale, rotateZ }}
-							>
-								<div className="w-3 h-3 bg-lime-400" />
-								<div className="w-3 h-3 bg-lime-400" />
-							</motion.span>
-						</motion.div>
-
-						<div className="px-24">
-							<Title>HELLO WORLD!</Title>
-						</div>
-					</div>
-				</div>
-
 				<div className="absolute inset-x-0 bottom-0">
 					<div className="absolute inset-0 flex flex-col gap-20 justify-center items-center">
 						<ParallaxText baseVelocity={1}>
@@ -103,9 +76,28 @@ export function BannerAndAbout() {
 						<div className="w-4 h-4 rounded-full bg-lime-400 absolute top-0 inset-x-0 mx-auto animate-scrollDown" />
 					</div>
 				</div>
+
+				<Container className="relative mr-auto">
+					<h2 className="text-[3.75rem] md:text-[6rem] font-black tracking-tighter leading-[0.8] text-white mb-0">
+						<span>Hello </span>
+						<motion.span
+							id="initialElement"
+							style={{
+								top,
+								left,
+								color,
+							}}
+							className="relative z-10 pointer-events-none"
+						>
+							W
+						</motion.span>
+
+						<span>orld!</span>
+					</h2>
+				</Container>
 			</section>
 
-			<section className="w-screen h-screen relative bg-[#242424] flex flex-col justify-between">
+			<section className="w-screen h-screen relative bg-[#242424] flex flex-col justify-between py-10">
 				<Image
 					alt=""
 					src="/images/about.webp"
@@ -114,9 +106,17 @@ export function BannerAndAbout() {
 					className="absolute inset-x-0 bottom-0 object-contain w-full h-full"
 				/>
 
-				<Container className="bg-transparent mb-10">
+				<Container className="bg-transparent mb-10 grid grid-cols-2 gap-10">
 					<h2 className="text-6xl md:text-9xl lg:text-[15rem] text-white mb-24 font-black tracking-tighter leading-[0.8] bg-transparent">
 						ABOUT <br /> ME
+					</h2>
+
+					<h2 className="text-[3.75rem] md:text-[6rem] font-black tracking-tighter leading-[0.8] text-white mb-0 text-end">
+						SOFT
+						<span className="opacity-0" id="endElement">
+							W
+						</span>
+						ARE DEVELOPER
 					</h2>
 
 					{/* <div className='-mt-80 w-1/2 ml-auto relative z-10 flex flex-col gap-10'>
