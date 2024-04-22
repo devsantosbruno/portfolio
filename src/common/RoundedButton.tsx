@@ -1,15 +1,24 @@
+import { cn } from "@/lib/utils";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
+import { isDesktop } from "react-device-detect";
 import Magnetic from "./Magnetic";
+
+type RoundedButtonType = {
+	children: React.ReactNode;
+	className?: string;
+	onClick: () => void;
+};
 
 export function RoundedButton({
 	children,
-	backgroundColor = "#242424",
-	...attributes
-}: any) {
+	className,
+	onClick,
+}: RoundedButtonType) {
 	const circleRef = useRef<HTMLDivElement>(null);
 	const timelineRef = useRef<gsap.core.Timeline | null>(null);
 	let timeoutId: NodeJS.Timeout | null = null;
+	const ref = useRef(null);
 
 	useEffect(() => {
 		if (circleRef.current) {
@@ -17,7 +26,7 @@ export function RoundedButton({
 			timelineRef.current
 				.to(
 					circleRef.current,
-					{ top: "-25%", width: "150%", duration: 0.4, ease: "power3.in" },
+					{ top: "-25%", width: "150%", duration: 0.5, ease: "power3.in" },
 					"enter",
 				)
 				.to(
@@ -45,18 +54,28 @@ export function RoundedButton({
 		}, 300);
 	};
 
+	function manageOnClick() {
+		if (!isDesktop) {
+			manageMouseEnter();
+			manageMouseLeave();
+		}
+	}
+
 	return (
 		<Magnetic>
 			<div
-				className="rounded-[3em] border border-lime-700 cursor-pointer relative flex items-center justify-center py-4 px-14"
+				ref={ref}
+				className={cn(
+					"rounded-[3em] cursor-pointer relative flex items-center justify-center",
+					className,
+				)}
 				style={{ overflow: "hidden" }}
-				onMouseEnter={() => {
-					manageMouseEnter();
+				onMouseEnter={() => isDesktop && manageMouseEnter()}
+				onMouseLeave={() => isDesktop && manageMouseLeave()}
+				onClick={() => {
+					onClick();
+					manageOnClick();
 				}}
-				onMouseLeave={() => {
-					manageMouseLeave();
-				}}
-				{...attributes}
 			>
 				{children}
 				<div
