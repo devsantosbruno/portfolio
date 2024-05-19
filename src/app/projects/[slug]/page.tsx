@@ -2,7 +2,7 @@
 
 import { Container } from "@/components";
 import { useScroll } from "@/hooks/useScroll";
-import { type ProjectType, projects } from "@/mocks/projects";
+import { projects, type ProjectType } from "@/mocks/projects";
 import { motion, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
