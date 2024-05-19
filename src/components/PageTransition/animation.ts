@@ -1,7 +1,11 @@
 import gsap from "gsap";
 import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
-export const animatePageIn = (href: string, router: AppRouterInstance) => {
+export const animatePageIn = (
+	href: string,
+	router: AppRouterInstance,
+	title?: string,
+) => {
 	const pageTransitionElement = document.getElementById(
 		"pageTransitionElement",
 	);
@@ -9,6 +13,8 @@ export const animatePageIn = (href: string, router: AppRouterInstance) => {
 	if (pageTransitionTitle) {
 		if (href === "/") {
 			pageTransitionTitle.innerText = "HOME";
+		} else if (title) {
+			pageTransitionTitle.innerText = title.toUpperCase();
 		} else {
 			pageTransitionTitle.innerText = href.replace("/", "").toUpperCase();
 		}
