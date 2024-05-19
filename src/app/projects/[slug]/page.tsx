@@ -1,12 +1,13 @@
 "use client";
 
 import { Container } from "@/components";
+import { animatePageIn } from "@/components/PageTransition/animation";
 import { useScroll } from "@/hooks/useScroll";
 import { projects, type ProjectType } from "@/mocks/projects";
 import { motion, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import { useMemo, useRef, useState } from "react";
 
 export default function Project({ params }: { params: ProjectType }) {
@@ -19,6 +20,7 @@ export default function Project({ params }: { params: ProjectType }) {
 		return notFound();
 	}
 
+	const router = useRouter();
 	const container = useRef(null);
 	const scrollYProgress = useScroll(container, ["start end", "end start"]);
 	const height = useTransform(scrollYProgress, [0, 1.01], [50, 0]);
@@ -36,8 +38,12 @@ export default function Project({ params }: { params: ProjectType }) {
 			<div className="bg-[#303030] pt-10 pb-40">
 				<Container>
 					<div className="flex justify-center items-center gap-5 font-thin tracking-tighter leading-[0.8]">
-						<button type="button" className="text-lime-400 font-bold">
-							Project
+						<button
+							type="button"
+							className="text-lime-400 font-bold"
+							onClick={() => animatePageIn("/projects", router)}
+						>
+							Projects
 						</button>
 						<span>#</span>
 						<span>{project.title}</span>
