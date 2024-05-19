@@ -30,7 +30,7 @@ export const animatePageIn = (href: string, router: AppRouterInstance) => {
 			onComplete: () => {
 				setTimeout(() => {
 					animatePageOut(href, router, pageTransitionElement, invertDirection);
-				}, 1500);
+				}, 1250);
 			},
 		});
 	}
@@ -47,11 +47,11 @@ export const animatePageOut = (
 
 		tl.set(element, {
 			top: 0,
-			transition: 1.5,
+			transition: 1.25,
 			ease: "expo.out",
 		}).to(element, {
 			top: Number(invertDirection) * -1,
-			transition: 1.5,
+			transition: 1.25,
 			ease: "expo.out",
 			onComplete: () => {
 				router.push(href);
