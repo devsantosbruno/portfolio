@@ -1,8 +1,11 @@
 "use client";
 
 import { Container } from "@/components";
+import { projects } from "@/mocks/projects";
 import { useMotionValueEvent, useScroll } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
+import { animatePageIn } from "../PageTransition/animation";
 import { Project } from "./Project";
 
 export type ModalStateType = {
@@ -10,37 +13,12 @@ export type ModalStateType = {
 	index: number;
 };
 
-export type ProjectsType = {
-	title: string;
-	preview: string;
-	color: string;
-};
-
-const projects: ProjectsType[] = [
-	{
-		title: "C2 Montreal",
-		preview: "c2montreal.png",
-		color: "#000000",
-	},
-	{
-		title: "Office Studio",
-		preview: "officestudio.png",
-		color: "#8C8C8C",
-	},
-	{
-		title: "Locomotive",
-		preview: "locomotive.png",
-		color: "#EFE8D3",
-	},
-	{
-		title: "Silencio",
-		preview: "silencio.png",
-		color: "#706D63",
-	},
-];
-
 export function Projects() {
+	const router = useRouter();
 	const [indexActive, setIndexActive] = useState(0);
+	const [fontSizeWindow, setFontSizeWindow] = useState(
+		Math.floor(window.innerWidth / "see all".length),
+	);
 
 	const container = useRef(null);
 	const { scrollYProgress } = useScroll({
@@ -48,9 +26,16 @@ export function Projects() {
 		offset: ["start end", "end start"],
 	});
 
+	const fourFirstsProjects = projects.slice(0, 4);
+
 	useMotionValueEvent(scrollYProgress, "change", (scrollValue) => {
-		const valuePerProject = 1 / projects.length;
+		const valuePerProject = 1 / fourFirstsProjects.length;
 		setIndexActive(scrollValue / valuePerProject);
+	});
+
+	window.addEventListener("resize", () => {
+		const widthSize = window.innerWidth;
+		setFontSizeWindow(Math.floor(widthSize / "see all".length));
 	});
 
 	return (
@@ -62,16 +47,30 @@ export function Projects() {
 			</Container>
 
 			<div ref={container}>
-				{projects.map((project, index) => {
+				{fourFirstsProjects.map((project, index) => {
 					return (
 						<Project
 							title={project.title}
-							preview={project.preview}
+							preview={project.banner}
+							link={project.slug}
 							isActive={index === Math.floor(indexActive)}
+							setIndexActive={setIndexActive}
+							index={index}
 							key={project.title}
 						/>
 					);
 				})}
+			</div>
+
+			<div className="flex items-center justify-center overflow-hidden">
+				<button
+					type="button"
+					className="text-black font-black tracking-tighter leading-[0.8]"
+					onClick={() => animatePageIn("/projects", router)}
+					style={{ fontSize: `${(fontSizeWindow * 1.5) / 16}rem` }}
+				>
+					see all
+				</button>
 			</div>
 		</section>
 	);
