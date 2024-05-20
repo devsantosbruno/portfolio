@@ -30,7 +30,11 @@ export function Projects() {
 
 	useMotionValueEvent(scrollYProgress, "change", (scrollValue) => {
 		const valuePerProject = 1 / fourFirstsProjects.length;
-		setIndexActive(scrollValue / valuePerProject);
+		const indexActive = scrollValue / valuePerProject;
+
+		if (indexActive < fourFirstsProjects.length) {
+			setIndexActive(scrollValue / valuePerProject);
+		}
 	});
 
 	window.addEventListener("resize", () => {
