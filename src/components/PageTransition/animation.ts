@@ -27,11 +27,11 @@ export const animatePageIn = (
 
 		tl.set(pageTransitionElement, {
 			top: invertDirection,
-			transition: 1,
+			transition: 1.5,
 			ease: "expo.out",
 		}).to(pageTransitionElement, {
 			top: 0,
-			transition: 1,
+			transition: 1.5,
 			ease: "expo.out",
 			onComplete: () => {
 				setTimeout(() => {
