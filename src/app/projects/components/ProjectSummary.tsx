@@ -40,9 +40,18 @@ export function ProjectSummary({
 						className="absolute inset-0 w-full h-full object-cover group-hover:opacity-25 transition duration-1000"
 					/>
 
-					<div className="opacity-0 group-hover:opacity-100 transition duration-1000 min-h-[600px] min-w-[600px] p-10 text-white text-5xl relative">
-						<Title className="mb-8 md:mb-8">{project.title}</Title>
-						<p className="text-2xl font-thin">{project.resume}</p>
+					<div className="opacity-0 group-hover:opacity-100 transition duration-1000 min-h-[600px] min-w-[600px] p-10 text-white text-5xl relative flex flex-col justify-between">
+						<div>
+							<Title className="mb-8 md:mb-8">{project.title}</Title>
+
+							<p className="text-2xl font-thin">{project.resume}</p>
+						</div>
+
+						<div className="flex justify-end">
+							<span className="rounded-full border px-6 py-2 bg-transparent border-white text-white font-semibold text-sm tracking-tighter leading-[0.8]">
+								{project.year}
+							</span>
+						</div>
 					</div>
 
 					<button
