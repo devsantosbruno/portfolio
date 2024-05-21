@@ -15,6 +15,7 @@ const formSchema = z.object({
 	name: z.string().optional(),
 	role: z.string().optional(),
 	company: z.string().optional(),
+	subject: z.string().optional(),
 	email: z.string().optional(),
 });
 
@@ -30,6 +31,7 @@ export default function Contact() {
 			name: "",
 			role: "",
 			company: "",
+			subject: "",
 			email: "",
 		},
 	});
@@ -38,9 +40,10 @@ export default function Contact() {
 		name,
 		role,
 		company,
+		subject,
 		email,
 	}: z.infer<typeof formSchema>) {
-		setIsLoading(true);
+		toast.dismiss();
 
 		const emailValidate = email
 			?.toLowerCase()
@@ -48,79 +51,94 @@ export default function Contact() {
 				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 			);
 
-		if (name && role && company && emailValidate) {
-			setTimeout(() => {
-				form.reset();
-				setIsLoading(false);
-				return toast.success("E-mail enviado com sucesso!");
-			}, 5000);
+		if (name && role && subject && emailValidate) {
+			setIsLoading(true);
+			const mailValues: z.infer<typeof formSchema> = {
+				name,
+				role,
+				company,
+				subject,
+				email,
+			};
+
+			const response = await fetch("/api/mail", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(mailValues),
+			});
+
+			form.reset();
+
+			if (response.status === 200) {
+				toast.success("Email sent successfully!");
+				return setIsLoading(false);
+			}
+
+			toast.error("An error occurred. Please try again later!");
+			return setIsLoading(false);
 		}
 
 		if (!name) {
-			toast.error("Preencha o seu Nome");
+			toast.error("Name is required.");
 		}
 
 		if (!role) {
-			toast.error("Preencha o seu Cargo");
+			toast.error("Role is required.");
 		}
 
-		if (!company) {
-			toast.error("Preencha o nome da Empresa");
+		if (!subject) {
+			toast.error("Subject is required.");
 		}
 
 		if (!email) {
-			toast.error("Preencha o seu Email");
+			toast.error("Email is required.");
 		}
 
 		if (email && !emailValidate) {
-			toast.error('Certifique-se de incluir o domínio após o "@".', {
-				description: "Por exemplo: email@email.com",
+			toast.error('Make sure to include the domain after the "@".', {
+				description: "For example: email@email.com",
 			});
 		}
-
-		setIsLoading(false);
 	}
 
 	return (
-		<section
-			ref={container}
-			className="z-10 relative bg-black py-20"
-			id="contact"
-		>
-			<Container className="min-h-[125vh]">
+		<section ref={container} className="z-10 relative bg-black" id="contact">
+			<Container className="min-h-[100vh]">
 				<Title className="uppercase mr-auto pt-[15vh]">
-					Preencha os campos e <br /> entraremos em contato
+					FILL IN THE FIELDS AND <br /> WE WILL GET IN TOUCH
 				</Title>
 
 				<Root {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)}>
-						<div className="flex flex-col gap-10  overflow-hidden">
+						<div className="flex flex-col gap-10 overflow-hidden">
 							<h2 className="text-4xl text-white">
-								Meu nome é{" "}
+								My name is{" "}
 								<span className="whitespace-nowrap">
 									[
 									<FormField
 										control={form.control}
 										name="name"
 										render={({ field }) => (
-											<Input placeholder="Bruno" {...field} />
+											<Input placeholder="Bruno*" {...field} />
 										)}
 									/>
-									],
+									].
 								</span>{" "}
-								Eu sou{" "}
+								I am a{" "}
 								<span className="whitespace-nowrap">
 									[
 									<FormField
 										control={form.control}
 										name="role"
 										render={({ field }) => (
-											<Input placeholder="Desenvolvedor" {...field} />
+											<Input placeholder="Developer*" {...field} />
 										)}
 									/>
-									],
+									].
 								</span>{" "}
-								Falo em nome da empresa{" "}
+								I speak on behalf of the company{" "}
 								<span className="whitespace-nowrap">
 									[
 									<FormField
@@ -130,29 +148,41 @@ export default function Contact() {
 											<Input placeholder="Trama" {...field} />
 										)}
 									/>
-									],
+									].
 								</span>{" "}
-								Gostaria de marcar uma reunião para entender melhor o trabalho
-								de vocês e se minha marca é compatível com o serviço de vocês.
+								I would like to count on you to{" "}
+								<span className="whitespace-nowrap">
+									[
+									<FormField
+										control={form.control}
+										name="subject"
+										render={({ field }) => (
+											<Input placeholder="develop an app*" {...field} />
+										)}
+									/>
+									].
+								</span>{" "}
+								Exploring a possible collaboration, contributing your skills so
+								we can achieve our common goals.
 							</h2>
 
 							<h2 className="text-4xl text-white">
-								Quer um orçamento? Vamos marcar uma reunião para que possamos
-								entender melhor sua empresa e como podemos fazer dela melhor,
-								juntos. Qual seu email?{" "}
+								I eagerly await your response at{" "}
 								<span className="whitespace-nowrap">
 									[
 									<FormField
 										control={form.control}
 										name="email"
 										render={({ field }) => (
-											<Input placeholder="contato@bytrama.com" {...field} />
+											<Input placeholder="contato@bytrama.com*" {...field} />
 										)}
 									/>
-									],
+									].
 								</span>{" "}
-								Entraremos em contato para um agendamento, muito obrigado.
+								So that we can schedule a conversation and explore the
+								possibility of working together on a truly exciting project.
 							</h2>
+							<h2 className="text-4xl text-white">Thank you very much!</h2>
 
 							<div className="mt-5 flex justify-end">
 								<button
@@ -172,7 +202,7 @@ export default function Contact() {
 				</Root>
 			</Container>
 
-			<motion.div style={{ height }} className="relative mt-28">
+			<motion.div style={{ height }} className="relative">
 				<div className="h-[1550%] w-[120%] -left-[10%] rounded-b-[50%] bg-black z-10 absolute shadow-contact" />
 			</motion.div>
 		</section>
