@@ -8,35 +8,40 @@ import { useEffect, useRef, useState } from "react";
 import { ParallaxText } from "./ParallaxText";
 
 export function BannerAndAbout() {
-	const firstElementPosition = document
-		.getElementById("initialElement")
-		?.getBoundingClientRect();
-	const secondElementPosition = document
-		.getElementById("endElement")
-		?.getBoundingClientRect();
-
-	// @ts-ignore
-	const positionTop = secondElementPosition?.top - firstElementPosition?.top;
-	// @ts-ignore
-	const positionLeft = secondElementPosition?.left - firstElementPosition?.left;
-
 	const container = useRef(null);
-	const [heightTeste, setHeightTeste] = useState(0);
+	const [heightImage, setHeightImage] = useState(0);
+	const [positions, setPositions] = useState({ top: 0, left: 0 });
+
+	useEffect(() => {
+		if (typeof document !== "undefined") {
+			const firstElement = document.getElementById("initialElement");
+			const secondElement = document.getElementById("endElement");
+
+			if (firstElement && secondElement) {
+				const firstElementPosition = firstElement.getBoundingClientRect();
+				const secondElementPosition = secondElement.getBoundingClientRect();
+
+				setPositions({
+					top: secondElementPosition.top - firstElementPosition.top,
+					left: secondElementPosition.left - firstElementPosition.left,
+				});
+			}
+		}
+
+		const imageHeight =
+			document.getElementById("mainBannerHeight")?.offsetHeight;
+
+		setHeightImage(imageHeight as number);
+	}, []);
+
 	const scrollYProgress = useScroll(container, ["end end", "end start"]);
-	const top = useTransform(scrollYProgress, [0, 0.8], [0, positionTop]);
-	const left = useTransform(scrollYProgress, [0, 0.8], [0, positionLeft]);
+	const top = useTransform(scrollYProgress, [0, 0.8], [0, positions.top]);
+	const left = useTransform(scrollYProgress, [0, 0.8], [0, positions.left]);
 	const color = useTransform(
 		scrollYProgress,
 		[0, 0.2, 0.8],
 		["#fff", "#a3e635", "#fff"],
 	);
-
-	useEffect(() => {
-		const imageHeight =
-			document.getElementById("mainBannerHeight")?.offsetHeight;
-
-		setHeightTeste(imageHeight as number);
-	}, []);
 
 	return (
 		<>
@@ -69,7 +74,7 @@ export function BannerAndAbout() {
 					className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/10"
 					style={{
 						// @ts-ignore
-						"--tw-gradient-to-position": `${heightTeste}px`,
+						"--tw-gradient-to-position": `${heightImage}px`,
 					}}
 				/>
 
