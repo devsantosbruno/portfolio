@@ -53,7 +53,7 @@ export function Preloader() {
 				className="-ml-[10vw] w-[120vw] bg-[#1d1e21] rounded-b-full"
 				initial={{ top: "100vh", height: "100vh" }}
 				animate={{ top: 0, height: "25vh" }}
-				transition={{ duration: 1, delay: 3.5 }}
+				transition={{ duration: 2, delay: 3.5 }}
 			/>
 		</motion.div>
 	);
