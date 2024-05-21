@@ -5,13 +5,14 @@ import type { ControllerRenderProps } from "react-hook-form";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	placeholder: string;
-	id: string;
 }
 
-export function Input({ placeholder, id, ...field }: InputProps) {
+export function Input({ placeholder, ...field }: InputProps) {
 	const titleRef = useRef(null);
 	const [titleRefValue, setTitleRefValue] = useState(placeholder);
-	const { value } = { ...field } as ControllerRenderProps;
+	const { value, name } = { ...field } as ControllerRenderProps;
+
+	const ID = `input-${name}`;
 
 	useEffect(() => {
 		if (value.length > 0) {
@@ -23,7 +24,7 @@ export function Input({ placeholder, id, ...field }: InputProps) {
 	useEffect(() => {
 		if (titleRef.current) {
 			const { offsetWidth } = titleRef.current;
-			const elementStyle = document.getElementById(`${id}`)?.style;
+			const elementStyle = document.getElementById(ID)?.style;
 
 			if (elementStyle) {
 				elementStyle.minWidth = `${placeholder.length + 8}px`;
@@ -33,7 +34,7 @@ export function Input({ placeholder, id, ...field }: InputProps) {
 				}
 			}
 		}
-	}, [titleRefValue, id, placeholder]);
+	}, [titleRefValue, ID, placeholder]);
 
 	return (
 		<>
@@ -48,7 +49,7 @@ export function Input({ placeholder, id, ...field }: InputProps) {
 
 			<input
 				type="text"
-				id={`${id}`}
+				id={ID}
 				className="inline-flex text-lime-400 bg-transparent border-none outline-none placeholder:text-[#242424] max-w-[85vw]"
 				placeholder={titleRefValue?.length > 0 ? placeholder : ""}
 				{...field}

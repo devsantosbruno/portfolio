@@ -103,7 +103,7 @@ export default function Contact() {
 										control={form.control}
 										name="name"
 										render={({ field }) => (
-											<Input placeholder="Bruno" id="inputName" {...field} />
+											<Input placeholder="Bruno" {...field} />
 										)}
 									/>
 									],
@@ -115,11 +115,7 @@ export default function Contact() {
 										control={form.control}
 										name="role"
 										render={({ field }) => (
-											<Input
-												placeholder="Desenvolvedor"
-												id="inputRole"
-												{...field}
-											/>
+											<Input placeholder="Desenvolvedor" {...field} />
 										)}
 									/>
 									],
@@ -131,7 +127,7 @@ export default function Contact() {
 										control={form.control}
 										name="company"
 										render={({ field }) => (
-											<Input placeholder="Trama" id="inputCompany" {...field} />
+											<Input placeholder="Trama" {...field} />
 										)}
 									/>
 									],
@@ -150,11 +146,7 @@ export default function Contact() {
 										control={form.control}
 										name="email"
 										render={({ field }) => (
-											<Input
-												placeholder="contato@bytrama.com"
-												id="inputEmail"
-												{...field}
-											/>
+											<Input placeholder="contato@bytrama.com" {...field} />
 										)}
 									/>
 									],
