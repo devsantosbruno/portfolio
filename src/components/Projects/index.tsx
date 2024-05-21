@@ -4,7 +4,7 @@ import { Container } from "@/components";
 import { projects } from "@/mocks/projects";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { animatePageIn } from "../PageTransition/animation";
 import { Project } from "./Project";
 
@@ -15,12 +15,10 @@ export type ModalStateType = {
 
 export function Projects() {
 	const router = useRouter();
-	const [indexActive, setIndexActive] = useState(0);
-	const [fontSizeWindow, setFontSizeWindow] = useState(
-		Math.floor(window.innerWidth / "see all".length),
-	);
-
 	const container = useRef(null);
+	const [indexActive, setIndexActive] = useState(0);
+	const [fontSizeWindow, setFontSizeWindow] = useState(0);
+
 	const { scrollYProgress } = useScroll({
 		target: container,
 		offset: ["start end", "end start"],
@@ -37,10 +35,21 @@ export function Projects() {
 		}
 	});
 
-	window.addEventListener("resize", () => {
-		const widthSize = window.innerWidth;
-		setFontSizeWindow(Math.floor(widthSize / "see all".length));
-	});
+	useEffect(() => {
+		// Verifica se está no navegador
+		if (typeof window !== "undefined") {
+			const calculateFontSize = () => {
+				const widthSize = window.innerWidth;
+				setFontSizeWindow(Math.floor(widthSize / "see all".length));
+			};
+
+			calculateFontSize();
+
+			window.addEventListener("resize", calculateFontSize);
+
+			return () => window.removeEventListener("resize", calculateFontSize);
+		}
+	}, []);
 
 	return (
 		<section className="bg-white pt-20">
