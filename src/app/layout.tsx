@@ -9,6 +9,7 @@ import { SmoothScroll } from "@/components/ui";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Head from "next/head";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -40,6 +41,7 @@ export default function RootLayout({
 						<PageTransition />
 
 						{children}
+						<Toaster richColors closeButton className="z-[98]" />
 					</main>
 					<Footer />
 				</SmoothScroll>
