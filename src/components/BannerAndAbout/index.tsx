@@ -15,7 +15,9 @@ export function BannerAndAbout() {
 		.getElementById("endElement")
 		?.getBoundingClientRect();
 
+	// @ts-ignore
 	const positionTop = secondElementPosition?.top - firstElementPosition?.top;
+	// @ts-ignore
 	const positionLeft = secondElementPosition?.left - firstElementPosition?.left;
 
 	const container = useRef(null);
