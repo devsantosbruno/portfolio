@@ -28,7 +28,7 @@ export function Header() {
 			<div className="fixed right-0 z-50">
 				<RoundedButton
 					onClick={() => {
-						setIsActive(!isActive);
+						setIsActive((prevState) => !prevState);
 					}}
 					className="relative m-6 w-20 h-20 rounded-full bg-[#242424] cursor-pointer flex items-center justify-center shadow-2xl"
 				>

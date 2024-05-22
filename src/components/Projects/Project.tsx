@@ -1,13 +1,35 @@
 import { Container } from "@/components";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { animatePageIn } from "../PageTransition/animation";
 
 type ProjectType = {
 	title: string;
 	preview: string;
+	link: string;
 	isActive: boolean;
+	setIndexActive: React.Dispatch<React.SetStateAction<number>>;
+	index: number;
 };
 
-export function Project({ title, preview, isActive }: ProjectType) {
+export function Project({
+	title,
+	preview,
+	link,
+	isActive,
+	setIndexActive,
+	index,
+}: ProjectType) {
+	const router = useRouter();
+
+	function handleClick() {
+		if (!isActive) {
+			return setIndexActive(index);
+		}
+
+		return animatePageIn(`/projects/${link}`, router, title);
+	}
+
 	return (
 		<div
 			className={`w-full py-10 border-t-[1px] border-t-black relative last-of-type:border-b-[1px] border-b-black transition duration-700 ${
@@ -40,8 +62,19 @@ export function Project({ title, preview, isActive }: ProjectType) {
 						alt={`${title} preview`}
 						className="w-full h-full object-cover object-center"
 					/>
+					<button
+						type="button"
+						className="absolute inset-0"
+						onClick={handleClick}
+					/>
 				</div>
 			)}
+
+			<button
+				type="button"
+				className="absolute inset-0"
+				onClick={handleClick}
+			/>
 		</div>
 	);
 }

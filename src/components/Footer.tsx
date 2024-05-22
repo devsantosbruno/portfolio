@@ -75,10 +75,10 @@ export function Footer() {
 					<div className="border-b-[1px] border-b-lime-300 pb-28 relative">
 						<motion.div
 							style={{ x }}
-							className="absolute right-[400px] top-7 md:top-4"
+							className="absolute md:right-[400px] top-7 md:top-4"
 						>
 							<RoundedButton
-								className="w-40 h-40 md:w-48 md:h-48 bg-white text-black rounded-full absolute flex items-center justify-center cursor-pointer shadow-2xl"
+								className="w-40 h-40 md:w-48 md:h-48 bg-white text-black rounded-full flex items-center justify-center cursor-pointer shadow-2xl p-0"
 								onClick={handleClick}
 							>
 								<p className="m-0 text-base font-thin z-10 relative">

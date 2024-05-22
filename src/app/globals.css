@@ -76,4 +76,13 @@
   body {
     @apply bg-background text-foreground overflow-x-hidden;
   }
+  ::-webkit-scrollbar {
+    @apply hidden w-0;
+  }
+  ::selection {
+    @apply bg-lime-400 text-black;
+}
+  ::-moz-selection {
+    @apply bg-lime-400 text-black;
+  }
 }

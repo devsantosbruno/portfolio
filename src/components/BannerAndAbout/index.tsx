@@ -1,6 +1,6 @@
 "use client";
 
-import { Container, Title } from "@/components";
+import { Container } from "@/components";
 import { useScroll } from "@/hooks/useScroll";
 import { motion, useTransform } from "framer-motion";
 import Image from "next/image";
@@ -9,28 +9,39 @@ import { ParallaxText } from "./ParallaxText";
 
 export function BannerAndAbout() {
 	const container = useRef(null);
-	const [heightTeste, setHeightTeste] = useState(0);
-	const scrollYProgress = useScroll(container, ["end end", "end start"]);
-	const top = useTransform(scrollYProgress, [0, 0.8], ["0vh", "100vh"]);
-	const left = useTransform(
-		scrollYProgress,
-		[0, 0.8],
-		["calc(0% - -40px)", "calc(100% - 80px)"],
-	);
-
-	const scale = useTransform(scrollYProgress, [0, 0.4, 0.8], [1, 4, 1]);
-	const rotateZ = useTransform(
-		scrollYProgress,
-		[0, 0.4, 0.8],
-		["0deg", "180deg", "360deg"],
-	);
+	const [heightImage, setHeightImage] = useState(0);
+	const [positions, setPositions] = useState({ top: 0, left: 0 });
 
 	useEffect(() => {
+		if (typeof document !== "undefined") {
+			const firstElement = document.getElementById("initialElement");
+			const secondElement = document.getElementById("endElement");
+
+			if (firstElement && secondElement) {
+				const firstElementPosition = firstElement.getBoundingClientRect();
+				const secondElementPosition = secondElement.getBoundingClientRect();
+
+				setPositions({
+					top: secondElementPosition.top - firstElementPosition.top,
+					left: secondElementPosition.left - firstElementPosition.left,
+				});
+			}
+		}
+
 		const imageHeight =
 			document.getElementById("mainBannerHeight")?.offsetHeight;
 
-		setHeightTeste(imageHeight as number);
+		setHeightImage(imageHeight as number);
 	}, []);
+
+	const scrollYProgress = useScroll(container, ["end end", "end start"]);
+	const top = useTransform(scrollYProgress, [0, 0.8], [0, positions.top]);
+	const left = useTransform(scrollYProgress, [0, 0.8], [0, positions.left]);
+	const color = useTransform(
+		scrollYProgress,
+		[0, 0.2, 0.8],
+		["#fff", "#a3e635", "#fff"],
+	);
 
 	return (
 		<>
@@ -38,37 +49,6 @@ export function BannerAndAbout() {
 				className="h-screen w-screen flex flex-col items-center py-20 relative"
 				ref={container}
 			>
-				<div className="containerTest w-full">
-					<div className="relative">
-						<motion.div
-							className="absolute flex gap-1 justify-center text-lime-400 text-6xl font-thin z-50"
-							style={{ top, left, scale, rotateZ }}
-						>
-							<motion.span
-								style={{
-									scale,
-									rotateZ,
-									transitionDuration: "0.6s",
-								}}
-							>
-								&#40;
-							</motion.span>
-
-							<motion.span
-								className="flex flex-col justify-evenly"
-								style={{ scale, rotateZ }}
-							>
-								<div className="w-3 h-3 bg-lime-400" />
-								<div className="w-3 h-3 bg-lime-400" />
-							</motion.span>
-						</motion.div>
-
-						<div className="px-24">
-							<Title>HELLO WORLD!</Title>
-						</div>
-					</div>
-				</div>
-
 				<div className="absolute inset-x-0 bottom-0">
 					<div className="absolute inset-0 flex flex-col gap-20 justify-center items-center">
 						<ParallaxText baseVelocity={1}>
@@ -94,7 +74,7 @@ export function BannerAndAbout() {
 					className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/10"
 					style={{
 						// @ts-ignore
-						"--tw-gradient-to-position": `${heightTeste}px`,
+						"--tw-gradient-to-position": `${heightImage}px`,
 					}}
 				/>
 
@@ -103,34 +83,62 @@ export function BannerAndAbout() {
 						<div className="w-4 h-4 rounded-full bg-lime-400 absolute top-0 inset-x-0 mx-auto animate-scrollDown" />
 					</div>
 				</div>
+
+				<Container className="relative mr-auto">
+					<h2 className="text-[3.75rem] md:text-[6rem] font-black tracking-tighter leading-[0.8] text-white mb-0">
+						<span>Hello </span>
+
+						<motion.span
+							id="initialElement"
+							style={{
+								top,
+								left,
+								color,
+							}}
+							className="relative z-10 pointer-events-none"
+						>
+							W
+						</motion.span>
+
+						<span>orld!</span>
+					</h2>
+				</Container>
 			</section>
 
-			<section className="w-screen h-screen relative bg-[#242424] flex flex-col justify-between">
-				<Image
-					alt=""
-					src="/images/about.webp"
-					width={1920}
-					height={1080}
-					className="absolute inset-x-0 bottom-0 object-contain w-full h-full"
-				/>
+			<section className="w-screen h-screen relative bg-[#242424] flex flex-col justify-between py-10">
+				<div className="absolute inset-x-0 bottom-0 lg:w-[60vw] xl:w-[40vw] mx-auto h-screen overflow-hidden lg:overflow-visible z-20">
+					<Image
+						alt=""
+						src="/images/about.webp"
+						width={1920}
+						height={1080}
+						className="object-cover w-full h-full overflow-visible relative top-[130px] lg:top-0 z-20"
+					/>
+				</div>
 
-				<Container className="bg-transparent mb-10">
-					<h2 className="text-6xl md:text-9xl lg:text-[15rem] text-white mb-24 font-black tracking-tighter leading-[0.8] bg-transparent">
-						ABOUT <br /> ME
-					</h2>
+				<Container className="bg-transparent mb-10 lg:grid lg:grid-cols-2">
+					<div />
 
-					{/* <div className='-mt-80 w-1/2 ml-auto relative z-10 flex flex-col gap-10'>
-            <h3 className='text-6xl text-white font-thin'>
-              Hello, my name's Bruno, I'm a Tech Lead based in Porto Alegre. At
-              Hero99, I serve as a Tech Lead, actively contributing to the
-              development of applications, systems, and websites.
-            </h3>
-            <h3 className='text-6xl text-white font-thin'>
-              When I'm not grinding at work, you can catch me pumping iron at
-              the gym, honing my poker skills or planning my next adventure to
-              explore the world.
-            </h3>
-          </div> */}
+					<div>
+						<h2 className="text-[3.75rem] md:text-[6rem] font-black tracking-tighter leading-[0.8] text-white mb-0 text-end">
+							I AM A<br />
+							SOFT
+							<span className="opacity-0" id="endElement">
+								W
+							</span>
+							ARE
+							<br />
+							DEVELOPER
+						</h2>
+
+						<div className="relative z-20 lg:w-3/4 ml-auto mt-20 lg:mt-0">
+							<h3 className="text-[3rem] text-white font-thin tracking-tighter leading-[0.8] mt-8">
+								My vibe is to explore animations, with GSAP, Framer Motion, or
+								Three.js. I pass the interface, adding special “seasoning,” of
+								life and personality to the interfaces.
+							</h3>
+						</div>
+					</div>
 				</Container>
 			</section>
 		</>

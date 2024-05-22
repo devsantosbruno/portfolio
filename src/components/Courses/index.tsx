@@ -17,13 +17,12 @@ export function Courses() {
 			<div className="flex flex-wrap justify-center gap-x-10 gap-y-20 md:gap-y-40 relative overflow-hidden">
 				{courses.map((item) => (
 					<Card
-						key={item.company}
-						company={item.company}
+						key={item.title}
+						title={item.title}
 						image={item.image}
 						link={item.link}
 						logo={item.logo}
 						techs={item.techs}
-						year={item.year}
 					/>
 				))}
 
