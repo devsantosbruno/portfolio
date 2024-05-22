@@ -75,7 +75,7 @@ export function Projects() {
 				})}
 			</div>
 
-			<div className="flex items-center justify-center overflow-hidden">
+			<div className="flex items-center justify-center overflow-hidden py-8 md:py-0">
 				<button
 					type="button"
 					className="text-black font-black tracking-tighter leading-[0.8]"

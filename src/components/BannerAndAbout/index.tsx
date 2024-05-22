@@ -106,29 +106,32 @@ export function BannerAndAbout() {
 			</section>
 
 			<section className="w-screen h-screen relative bg-[#242424] flex flex-col justify-between py-10">
-				<div className="absolute inset-x-0 bottom-0 lg:w-[60vw] xl:w-[40vw] mx-auto h-screen overflow-visible z-20">
+				<div className="absolute inset-x-0 bottom-0 lg:w-[60vw] xl:w-[40vw] mx-auto h-screen overflow-hidden lg:overflow-visible z-20">
 					<Image
 						alt=""
 						src="/images/about.webp"
 						width={1920}
 						height={1080}
-						className="object-cover w-full h-full overflow-visible relative z-20"
+						className="object-cover w-full h-full overflow-visible relative top-[130px] lg:top-0 z-20"
 					/>
 				</div>
 
-				<Container className="bg-transparent mb-10 grid grid-cols-2">
+				<Container className="bg-transparent mb-10 lg:grid lg:grid-cols-2">
 					<div />
 
-					<div className="">
+					<div>
 						<h2 className="text-[3.75rem] md:text-[6rem] font-black tracking-tighter leading-[0.8] text-white mb-0 text-end">
-							I AM A SOFT
+							I AM A<br />
+							SOFT
 							<span className="opacity-0" id="endElement">
 								W
 							</span>
-							ARE DEVELOPER
+							ARE
+							<br />
+							DEVELOPER
 						</h2>
 
-						<div className="relative z-20 w-3/4 ml-auto">
+						<div className="relative z-20 lg:w-3/4 ml-auto mt-20 lg:mt-0">
 							<h3 className="text-[3rem] text-white font-thin tracking-tighter leading-[0.8] mt-8">
 								My vibe is to explore animations, with GSAP, Framer Motion, or
 								Three.js. I pass the interface, adding special “seasoning,” of

@@ -37,10 +37,10 @@ export function ProjectSummary({
 						height={600}
 						src={`/images/${project.banner}`}
 						alt=""
-						className="absolute inset-0 w-full h-full object-cover group-hover:opacity-25 transition duration-1000"
+						className="absolute inset-0 w-full h-full object-cover opacity-25 lg:opacity-100 lg:group-hover:opacity-25 transition duration-1000"
 					/>
 
-					<div className="opacity-0 group-hover:opacity-100 transition duration-1000 min-h-[600px] min-w-[600px] p-10 text-white text-5xl relative flex flex-col justify-between">
+					<div className="opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition duration-1000 min-h-[600px] md:min-w-[600px] p-5 lg:p-10 text-white text-5xl relative flex flex-col justify-between">
 						<div>
 							<Title className="mb-8 md:mb-8">{project.title}</Title>
 

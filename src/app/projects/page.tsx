@@ -39,14 +39,14 @@ export default function Projects() {
 					BY ME
 				</h1>
 
-				<div className="grid grid-cols-2 gap-10">
-					<div className="flex flex-col gap-40">
+				<div className="lg:grid lg:grid-cols-2 lg:gap-10">
+					<div className="flex flex-col lg:gap-40">
 						{firstColumn.map((item, index) => (
 							<ProjectSummary key={item.slug} index={index} project={item} />
 						))}
 					</div>
 
-					<div className="flex flex-col gap-20">
+					<div className="flex flex-col lg:gap-20">
 						{secondColumn.map((item, index) => (
 							<ProjectSummary
 								key={item.slug}
