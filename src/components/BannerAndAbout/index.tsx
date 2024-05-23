@@ -18,11 +18,11 @@ export function BannerAndAbout() {
 		<section className="h-screen w-screen flex flex-col items-center py-20 relative">
 			<div className="absolute inset-x-0 bottom-0">
 				<div className="absolute inset-0 flex flex-col gap-20 justify-center items-center">
-					<ParallaxText baseVelocity={1}>
-						Bruno Santos Bruno Santos Bruno Santos Bruno Santos Bruno Santos
+					<ParallaxText baseVelocity={0.5}>
+						Bruno Santos Bruno Santos Bruno Santos
 					</ParallaxText>
-					<ParallaxText baseVelocity={-1}>
-						Bruno Santos Bruno Santos Bruno Santos Bruno Santos Bruno Santos
+					<ParallaxText baseVelocity={-0.5}>
+						Bruno Santos Bruno Santos Bruno Santos
 					</ParallaxText>
 				</div>
 
