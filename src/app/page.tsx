@@ -1,27 +1,9 @@
-import {
-	BannerAndAbout,
-	Container,
-	Courses,
-	Projects,
-	Techs,
-	Title,
-} from "@/components";
+import { BannerAndAbout, Container, Courses, Projects } from "@/components";
 
 export default function Home() {
 	return (
 		<>
 			<BannerAndAbout />
-
-			<section className="w-screen flex flex-col justify-between bg-lime-400 py-20">
-				<Container>
-					<Title className="text-black uppercase">
-						Tech Fusion <br /> Blending Creativity and <br /> Performance for
-						Impact
-					</Title>
-				</Container>
-
-				<Techs />
-			</section>
 
 			<Projects />
 
