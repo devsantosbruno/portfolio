@@ -35,16 +35,17 @@ export const animatePageIn = (
 			ease: "expo.out",
 			onComplete: () => {
 				setTimeout(() => {
-					animatePageOut(href, router, pageTransitionElement, invertDirection);
-				}, 2000);
+					router.push(href);
+				}, 1500);
+				setTimeout(() => {
+					animatePageOut(pageTransitionElement, invertDirection);
+				}, 2500);
 			},
 		});
 	}
 };
 
 export const animatePageOut = (
-	href: string,
-	router: AppRouterInstance,
 	element: HTMLElement,
 	invertDirection: string | number,
 ) => {
@@ -59,9 +60,6 @@ export const animatePageOut = (
 			top: Number(invertDirection) * -1,
 			transition: "top 2s",
 			ease: "expo.out",
-			onStart: () => {
-				router.push(href);
-			},
 		});
 	}
 };
