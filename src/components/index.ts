@@ -1,4 +1,4 @@
-export { BannerAndAbout } from "./BannerAndAbout";
+export { Banner } from "./Banner";
 export { Courses } from "./Courses";
 export { Header } from "./Header";
 export { PageTransition } from "./PageTransition";
@@ -9,5 +9,4 @@ export { Container } from "./Container";
 export { Cursor } from "./Cursor";
 export { Footer } from "./Footer";
 export { Input } from "./Input";
-export { Techs } from "./Techs";
 export { Title } from "./Title";

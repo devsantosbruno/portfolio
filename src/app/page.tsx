@@ -1,9 +1,9 @@
-import { BannerAndAbout, Container, Courses, Projects } from "@/components";
+import { Banner, Container, Courses, Projects } from "@/components";
 
 export default function Home() {
 	return (
 		<>
-			<BannerAndAbout />
+			<Banner />
 
 			<Projects />
 

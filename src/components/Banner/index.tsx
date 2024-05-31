@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ParallaxText } from "./ParallaxText";
 
-export function BannerAndAbout() {
+export function Banner() {
 	const [heightImage, setHeightImage] = useState(0);
 
 	useEffect(() => {
