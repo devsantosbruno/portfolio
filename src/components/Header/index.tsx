@@ -16,6 +16,17 @@ export function Header() {
 	const pathname = usePathname();
 
 	useEffect(() => {
+		window.addEventListener("resize", () => location.reload());
+		document.addEventListener("visibilitychange", () => {
+			if (document.visibilityState === "hidden") {
+				return setTabTitle("We miss you 😢");
+			}
+
+			if (document.visibilityState === "visible") {
+				return setTabTitle("Bruno | Software Developer");
+			}
+		});
+
 		localStorage.setItem("firstAccess", JSON.stringify(true));
 		setTimeout(() => {
 			localStorage.removeItem("firstAccess");
@@ -28,21 +39,9 @@ export function Header() {
 		}
 	}, [pathname]);
 
-	window.addEventListener("resize", () => location.reload());
-
 	useEffect(() => {
 		document.title = tabTitle;
 	}, [tabTitle]);
-
-	document.addEventListener("visibilitychange", () => {
-		if (document.visibilityState === "hidden") {
-			return setTabTitle("We miss you 😢");
-		}
-
-		if (document.visibilityState === "visible") {
-			return setTabTitle("Bruno | Software Developer");
-		}
-	});
 
 	return (
 		<>
