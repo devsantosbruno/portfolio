@@ -21,7 +21,7 @@ export function Footer() {
 
 	function handleClick() {
 		if (pathname !== "/contact") {
-			return animatePageIn("contact", router);
+			return animatePageIn("/contact", router);
 		}
 
 		const element = document.getElementById("contact");
