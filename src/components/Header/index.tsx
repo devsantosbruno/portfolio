@@ -6,7 +6,12 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Nav } from "./Nav";
 
+type TabTitle = "Bruno | Software Developer" | "We miss you 😢";
+
 export function Header() {
+	const [tabTitle, setTabTitle] = useState<TabTitle>(
+		"Bruno | Software Developer",
+	);
 	const [isActive, setIsActive] = useState(false);
 	const pathname = usePathname();
 
@@ -22,6 +27,22 @@ export function Header() {
 			setIsActive(false);
 		}
 	}, [pathname]);
+
+	window.addEventListener("resize", () => location.reload());
+
+	useEffect(() => {
+		document.title = tabTitle;
+	}, [tabTitle]);
+
+	document.addEventListener("visibilitychange", () => {
+		if (document.visibilityState === "hidden") {
+			return setTabTitle("We miss you 😢");
+		}
+
+		if (document.visibilityState === "visible") {
+			return setTabTitle("Bruno | Software Developer");
+		}
+	});
 
 	return (
 		<>
