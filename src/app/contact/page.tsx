@@ -110,6 +110,10 @@ export default function Contact() {
 					FILL IN THE FIELDS AND <br /> WE WILL GET IN TOUCH
 				</Title>
 
+				<div className="flex justify-end">
+					<span className="text-lime-400 text-xs">* is required</span>
+				</div>
+
 				<Root {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)}>
 						<div className="flex flex-col gap-10 overflow-hidden">
