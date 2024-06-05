@@ -4,6 +4,7 @@ import { RoundedButton } from "@/common/RoundedButton";
 import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { isDesktop } from "react-device-detect";
 import { Nav } from "./Nav";
 
 type TabTitle = "Bruno | Software Developer" | "We miss you 😢";
@@ -16,7 +17,18 @@ export function Header() {
 	const pathname = usePathname();
 
 	useEffect(() => {
-		window.addEventListener("resize", () => location.reload());
+		const mainTop = document.getElementById("main");
+		mainTop?.scrollIntoView({
+			behavior: "smooth",
+			block: "start",
+		});
+
+		window.addEventListener("resize", () => {
+			if (isDesktop) {
+				location.reload();
+			}
+		});
+
 		document.addEventListener("visibilitychange", () => {
 			if (document.visibilityState === "hidden") {
 				return setTabTitle("We miss you 😢");
