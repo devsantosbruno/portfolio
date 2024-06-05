@@ -1,10 +1,4 @@
-import {
-	Cursor,
-	Footer,
-	Header,
-	PageTransition,
-	Preloader,
-} from "@/components";
+import { Cursor, Footer, Header, PageTransition } from "@/components";
 import { SmoothScroll } from "@/components/ui";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -32,7 +26,7 @@ export default function RootLayout({
 
 			<body className={inter.className}>
 				<Cursor />
-				<Preloader />
+				{/* <Preloader /> */}
 				<Header />
 
 				<SmoothScroll>

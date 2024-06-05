@@ -144,28 +144,6 @@ export const projects: ProjectType[] = [
 		],
 	},
 	{
-		slug: "bruno-shop",
-		title: "Bruno Shop",
-		link: "https://bruno-shop.vercel.app/",
-		year: "2022",
-		jobs: ["Front-End Development"],
-		creativeTitle: "where style meets technology",
-		resume:
-			"Bruno Shop is an innovative e-commerce platform developed as a study project by Rocketseat, focused on selling clothing. With integration to Stripe for payments, the site offers a smooth and secure shopping experience. The modern and responsive layout was designed by Rocketseat, while the technical implementation, including the front-end, was my responsibility.",
-		description: [
-			"The Bruno Shop project represents the perfect fusion of style and technology. This e-commerce platform was created as a practical exercise by Rocketseat to explore the potential of modern platforms like Next.js and Stripe. Focused on selling clothing, Bruno Shop allows users to browse a variety of products, add items to their cart, and make secure payments through integration with Stripe.",
-			"Rocketseat, renowned for its excellence in developer training, designed a visually appealing and highly responsive layout, ensuring users have an enjoyable and intuitive shopping experience, whether on desktop or mobile devices.",
-			"My role in the project included the complete front-end development, where I utilized React and Next.js to create a dynamic and efficient user interface. Additionally, the integration with Stripe was a crucial component of the project, ensuring the payment process was simple, secure, and reliable.",
-			"Bruno Shop exemplifies how the combination of elegant design and robust technical implementation can result in an efficient and enjoyable e-commerce platform, providing a valuable and practical learning experience for developers.",
-		],
-		banner: "projects/bruno-shop-banner.svg",
-		mockups: [
-			"projects/bruno-shop-mockup-2.png",
-			"projects/bruno-shop-mockup-1.png",
-			"projects/bruno-shop-mockup-3.png",
-		],
-	},
-	{
 		slug: "course-player",
 		title: "Course Player",
 		link: "https://video-redux-zustand.vercel.app/",
@@ -180,7 +158,7 @@ export const projects: ProjectType[] = [
 			"My main responsibility was the front-end development, using React to create a user-friendly and responsive interface. The platform allows students to explore courses composed of videos, practical exercises, and quizzes, ensuring a deep and practical understanding of the subjects.",
 			"Course Player exemplifies how technology can be used to create effective and accessible educational tools, promoting continuous learning and empowering new developers.",
 		],
-		banner: "projects/bruno-shop-banner.svg",
+		banner: "projects/course-player-banner.svg",
 		mockups: [
 			"projects/course-player-mockup-1.png",
 			"projects/course-player-mockup-2.png",
@@ -200,7 +178,7 @@ export const projects: ProjectType[] = [
 			"The layout of the site was carefully developed by Rocketseat, providing a smooth and modern user experience. In this project, I was responsible for the front-end development, using modern web development technologies and methodologies.",
 			"This application is a study project, developed to enhance technical skills in JavaScript and React, as well as to explore best practices in design and usability.",
 		],
-		banner: "projects/bruno-shop-banner.svg",
+		banner: "projects/pomodoro-banner.svg",
 		mockups: [
 			"projects/pomodoro-mockup-1.png",
 			"projects/pomodoro-mockup-2.png",
@@ -221,7 +199,7 @@ export const projects: ProjectType[] = [
 			`Developed as part of Rocketseat's Ignite course, the Coffee Delivery layout was designed by Rocketseat's design team, ensuring an attractive and functional visual experience. My contribution to the project included the complete front-end development, utilizing modern technologies such as ReactJS and TypeScript to create a responsive and interactive interface.`,
 			"Although this is a test project and not linked to a real client, it demonstrates essential skills in e-commerce development, from implementing a sophisticated design to the checkout functionality. The experience gained from this project is valuable for future developments in online sales platforms.",
 		],
-		banner: "projects/bruno-shop-banner.svg",
+		banner: "projects/coffee-delivery-banner.svg",
 		mockups: [
 			"projects/coffee-delivery-mockup-2.png",
 			"projects/coffee-delivery-mockup-3.png",
