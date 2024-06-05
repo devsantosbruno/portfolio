@@ -21,7 +21,7 @@ export function Courses() {
 						title={item.title}
 						image={item.image}
 						link={item.link}
-						logo={item.logo}
+						company={item.company}
 						techs={item.techs}
 					/>
 				))}

@@ -6,7 +6,7 @@ import { useScroll } from "@/hooks/useScroll";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, useTransform } from "framer-motion";
 import { LoaderIcon } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -35,6 +35,10 @@ export default function Contact() {
 			email: "",
 		},
 	});
+
+	useEffect(() => {
+		document.getElementById("input-name")?.focus();
+	}, []);
 
 	async function onSubmit({
 		name,
@@ -109,6 +113,10 @@ export default function Contact() {
 				<Title className="uppercase mr-auto pt-[15vh]">
 					FILL IN THE FIELDS AND <br /> WE WILL GET IN TOUCH
 				</Title>
+
+				<div className="flex justify-end">
+					<span className="text-lime-400 text-xs">* is required</span>
+				</div>
 
 				<Root {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)}>
