@@ -3,7 +3,7 @@
 import { Container } from "@/components";
 import { animatePageIn } from "@/components/PageTransition/animation";
 import { useScroll } from "@/hooks/useScroll";
-import { type ProjectType, projects } from "@/mocks/projects";
+import { projects, type ProjectType } from "@/mocks/projects";
 import { motion, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -83,7 +83,7 @@ export default function Project({ params }: { params: ProjectType }) {
 						src={`/images/${project.banner}`}
 						width={1920}
 						height={1080}
-						className="w-full h-full object-cover"
+						className="w-full h-full object-cover max-h-[800px]"
 					/>
 
 					<div className="flex flex-col lg:flex-row gap-10 mt-14">
@@ -103,34 +103,41 @@ export default function Project({ params }: { params: ProjectType }) {
 			<div className="bg-white text-black pt-20">
 				<Container className="grid lg:grid-cols-2 items-start gap-2 lg:gap-20">
 					<div className="flex flex-col gap-2 lg:gap-10">
-						<span className="text-xl max-w-[500px] tracking-tighter leading-[0.8]">
-							{project.description}
-						</span>
+						<div className="flex flex-col gap-2">
+							{project.description.map((item) => (
+								<span
+									key={item}
+									className="text-xl max-w-[500px] tracking-tighter leading-[0.8]"
+								>
+									{item}
+								</span>
+							))}
+						</div>
 
-						<Image
-							alt=""
-							src={`/images/${project.mockups[0]}`}
-							width={1920}
-							height={1080}
-							className="w-full h-full object-cover"
-						/>
+						<div className="grid lg:grid-cols-2 gap-2 lg:gap-10">
+							{project.mockups.map(
+								(item, index) =>
+									index > 0 && (
+										<Image
+											key={item}
+											alt=""
+											src={`/images/${item}`}
+											width={1920}
+											height={1080}
+											className="w-full h-full object-contain"
+										/>
+									),
+							)}
+						</div>
 					</div>
 
-					<div className="grid lg:grid-cols-2 gap-2 lg:gap-10">
-						{project.mockups.map(
-							(item, index) =>
-								index > 0 && (
-									<Image
-										key={item}
-										alt=""
-										src={`/images/${item}`}
-										width={1920}
-										height={1080}
-										className="w-full h-full object-contain"
-									/>
-								),
-						)}
-					</div>
+					<Image
+						alt=""
+						src={`/images/${project.mockups[0]}`}
+						width={600}
+						height={600}
+						className="object-cover object-center mx-auto"
+					/>
 				</Container>
 			</div>
 
