@@ -26,7 +26,7 @@ export default function Projects() {
 	return (
 		<motion.section
 			ref={container}
-			className="z-10 relative pt-20"
+			className="z-10 relative pt-32"
 			style={{ background }}
 			id="contact"
 		>

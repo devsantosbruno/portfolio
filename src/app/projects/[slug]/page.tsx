@@ -45,18 +45,25 @@ export default function Project({ params }: { params: ProjectType }) {
 	const container = useRef(null);
 	const scrollYProgress = useScroll(container, ["start end", "end start"]);
 	const height = useTransform(scrollYProgress, [0, 1.01], [50, 0]);
-	const [fontSizeWindow, setFontSizeWindow] = useState(
-		Math.floor(window.innerWidth / title.length - 16),
-	);
+	const fontSizeWindowDefault =
+		window.innerWidth > 640
+			? Math.floor(window.innerWidth / title.length - 16)
+			: 20;
+	const [fontSizeWindow, setFontSizeWindow] = useState(fontSizeWindowDefault);
 
 	window.addEventListener("resize", () => {
 		const widthSize = window.innerWidth;
-		setFontSizeWindow(Math.floor(widthSize / title.length));
+
+		if (widthSize > 640) {
+			return setFontSizeWindow(Math.floor(widthSize / title.length));
+		}
+
+		return setFontSizeWindow(20);
 	});
 
 	return (
 		<section ref={container} className="z-10 relative bg-white text-white">
-			<div className="bg-[#303030] pt-10 pb-40">
+			<div className="bg-[#303030] pb-40 pt-32 sm:pt-10">
 				<Container>
 					<div className="flex justify-center items-center gap-5 font-thin tracking-tighter leading-[0.8] relative z-10">
 						<button
@@ -70,9 +77,9 @@ export default function Project({ params }: { params: ProjectType }) {
 						<span>{title}</span>
 					</div>
 
-					<div className="flex flex-col lg:flex-row items-end gap-5 mt-20">
+					<div className="flex flex-row flex-wrap items-end gap-5 mt-20">
 						<h1
-							className="font-black tracking-tighter leading-[0.8] text-white mb-0 w-fit text-nowrap flex flex-1 shrink-0"
+							className="font-black tracking-tighter leading-[0.8] text-white mb-0 w-fit text-wrap flex flex-1 shrink-0"
 							style={{ fontSize: `${(fontSizeWindow * 1.5) / 16}rem` }}
 						>
 							{title}
