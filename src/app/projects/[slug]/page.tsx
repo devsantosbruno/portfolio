@@ -37,7 +37,7 @@ export default function Project({ params }: { params: ProjectType }) {
 		<section ref={container} className="z-10 relative bg-white text-white">
 			<div className="bg-[#303030] pt-10 pb-40">
 				<Container>
-					<div className="flex justify-center items-center gap-5 font-thin tracking-tighter leading-[0.8]">
+					<div className="flex justify-center items-center gap-5 font-thin tracking-tighter leading-[0.8] relative z-10">
 						<button
 							type="button"
 							className="text-lime-400 font-bold"
