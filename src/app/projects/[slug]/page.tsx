@@ -63,7 +63,7 @@ export default function Project({ params }: { params: ProjectType }) {
 
 	return (
 		<section ref={container} className="z-10 relative bg-white text-white">
-			<div className="bg-[#303030] pb-40 pt-32 sm:pt-10">
+			<div className="bg-[#303030] pb-20 lg:pb-40 pt-32 sm:pt-10">
 				<Container>
 					<div className="flex justify-center items-center gap-5 font-thin tracking-tighter leading-[0.8] relative z-10">
 						<button
@@ -101,7 +101,7 @@ export default function Project({ params }: { params: ProjectType }) {
 							{creativeTitle}
 						</h2>
 
-						<span className="rounded-full border px-6 py-2 bg-transparent border-white text-white font-semibold text-sm tracking-tighter leading-[0.8]">
+						<span className="mt-4 lg:mt-0 rounded-full border px-6 py-2 bg-transparent border-white text-white font-semibold text-sm tracking-tighter leading-[0.8]">
 							{year}
 						</span>
 					</div>
