@@ -36,7 +36,7 @@ export default function RootLayout({
 				<Header />
 
 				<SmoothScroll>
-					<main className="min-h-screen w-screen bg-black">
+					<main className="min-h-screen w-screen bg-black" id="main">
 						<PageTransition />
 
 						{children}
