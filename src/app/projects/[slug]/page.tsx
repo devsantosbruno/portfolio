@@ -25,7 +25,7 @@ export default function Project({ params }: { params: ProjectType }) {
 	const scrollYProgress = useScroll(container, ["start end", "end start"]);
 	const height = useTransform(scrollYProgress, [0, 1.01], [50, 0]);
 	const [fontSizeWindow, setFontSizeWindow] = useState(
-		Math.floor(window.innerWidth / project.title.length),
+		Math.floor(window.innerWidth / project.title.length - 16),
 	);
 
 	window.addEventListener("resize", () => {
