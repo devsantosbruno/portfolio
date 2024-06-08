@@ -50,7 +50,7 @@ export function Input({ placeholder, ...field }: InputProps) {
 			<input
 				type="text"
 				id={ID}
-				className="inline-flex text-lime-400 bg-transparent border-none outline-none placeholder:text-[#242424] max-w-[85vw]"
+				className="inline-flex text-lime-400 bg-transparent border-none outline-none placeholder:text-slate-600/45 max-w-[85vw]"
 				placeholder={titleRefValue?.length > 0 ? placeholder : ""}
 				{...field}
 			/>
