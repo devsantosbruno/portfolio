@@ -115,13 +115,13 @@ export default function Project({ params }: { params: ProjectType }) {
 					/>
 
 					<div className="flex flex-col lg:flex-row gap-10 mt-14">
-						<div className="flex flex-col shrink-0 text-2xl tracking-tighter leading-[0.8]">
+						<div className="flex flex-col shrink-0 text-2xl tracking-tighter leading-[1.1]">
 							{jobs.map((item) => (
 								<span key={item}>{item}</span>
 							))}
 						</div>
 
-						<span className="text-4xl lg:max-w-[60vw] ml-auto tracking-tighter leading-[0.8]">
+						<span className="text-4xl lg:max-w-[60vw] ml-auto tracking-tighter leading-[1.1]">
 							{resume}
 						</span>
 					</div>
@@ -135,7 +135,7 @@ export default function Project({ params }: { params: ProjectType }) {
 							{description.map((item) => (
 								<span
 									key={item}
-									className="text-xl max-w-[500px] tracking-tighter leading-[0.8]"
+									className="text-xl max-w-[500px] tracking-tighter leading-[1.1]"
 								>
 									{item}
 								</span>

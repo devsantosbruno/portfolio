@@ -44,7 +44,7 @@ export function ProjectSummary({
 						<div>
 							<Title className="mb-8 md:mb-8">{project.title}</Title>
 
-							<p className="text-2xl font-thin">{project.resume}</p>
+							<p className="text-2xl font-light">{project.resume}</p>
 						</div>
 
 						<div className="flex justify-end">
