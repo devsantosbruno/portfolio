@@ -4,6 +4,7 @@ import { RoundedButton } from "@/common/RoundedButton";
 import { Container } from "@/components";
 import { useScroll } from "@/hooks/useScroll";
 import { motion, useTransform } from "framer-motion";
+import { GithubIcon, InstagramIcon, LinkedinIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -105,19 +106,28 @@ export function Footer() {
 							<div className="flex gap-4">
 								<Link
 									href="https://www.instagram.com/devbrunosantos/"
+									className="flex items-center gap-1"
 									target="_blank"
 								>
+									<InstagramIcon size={16} strokeWidth={1} />
 									Instagram
 								</Link>
 
-								<Link href="https://github.com/devsantosbruno" target="_blank">
+								<Link
+									href="https://github.com/devsantosbruno"
+									className="flex items-center gap-1"
+									target="_blank"
+								>
+									<GithubIcon size={16} strokeWidth={1} />
 									GitHub
 								</Link>
 
 								<Link
 									href="https://www.linkedin.com/in/devsantosbruno/"
+									className="flex items-center gap-1"
 									target="_blank"
 								>
+									<LinkedinIcon size={16} strokeWidth={1} />
 									LinkedIn
 								</Link>
 							</div>
