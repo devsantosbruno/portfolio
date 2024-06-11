@@ -122,6 +122,26 @@ export const projects: ProjectType[] = [
 		],
 	},
 	{
+		slug: "no-sound",
+		title: "No Sound",
+		link: "https://realtime-chat-devsantosbrunos-projects.vercel.app/",
+		year: "2024",
+		jobs: ["Design", "Front-End Development", "Back-End Development"],
+		creativeTitle: "connect silently, communicate effectively",
+		resume: `"No Sound" is a real-time chat platform designed to eliminate the distraction of audio, focusing exclusively on text communication. The project stands out for its simplicity and efficiency, featuring a modern layout and robust functionalities. I developed the layout, front-end, and back-end, creating an intuitive and seamless chat experience. This experimental project demonstrates the application of advanced technologies in developing communication solutions.`,
+		description: [
+			`The "No Sound" project was born from the idea of creating a real-time chat platform that promotes efficient communication without the common interruptions of audio. The name "No Sound" reflects this concept, offering a silent yet highly functional chat experience. The interface was designed to be intuitive and pleasant, incorporating my unique style to ensure smooth navigation and quick interaction.`,
+			`"No Sound" was created as a study project, highlighting skills in web development and real-time communication. It offers a clear demonstration of the capabilities and potential in developing modern communication platforms.`,
+			"This project is not commercial, but it serves as an excellent example of full-stack development possibilities, providing a smooth and efficient user experience in a real-time chat environment.",
+		],
+		banner: "projects/no-sound-banner.svg",
+		mockups: [
+			"projects/no-sound-mockup-1.png",
+			"projects/no-sound-mockup-2.png",
+			"projects/no-sound-mockup-3.png",
+		],
+	},
+	{
 		slug: "bruno-shop",
 		title: "Bruno Shop",
 		link: "https://bruno-shop.vercel.app/",
